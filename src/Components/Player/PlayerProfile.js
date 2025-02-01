@@ -74,6 +74,7 @@ export default function PlayerProfile() {
         <div className="text-center mb-2">
           <h2 className="text-decoration-underline text-dark">Player Details</h2>
         </div>
+        {/* commit */}
 
         {/* Player Details Section */}
         <div className="row">
