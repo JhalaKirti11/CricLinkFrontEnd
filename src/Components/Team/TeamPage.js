@@ -26,9 +26,9 @@ function TeamsPage() {
   };
 
   return (
-    <div className="container mt-4 text-white">
+    <div className="container mt-4 text-white" >
       {/* ========================== Teams ======================== */}
-      <h1 className="text-center mb-4 text-light text-decoration-underline" style={{ fontSize: '2.5rem' }}>
+      <h1 className="text-center mb-4 text-light text-decoration-underline" >
         Teams
       </h1>
   

@@ -38,7 +38,7 @@ const PlayerList = ({ filteredData }) => {
 
   return (
     <>
-      <div className="text-center" id="playerContainer">
+      <div className="text-center" id="playerContainer" >
         <h2 className="player-title">Players</h2>
       </div>
 
@@ -50,13 +50,13 @@ const PlayerList = ({ filteredData }) => {
 
         {/* Scrollable Player List */}
         <div ref={containerRef} className="scroll-container">
-          {displayData.map((player, index) => {
+          {displayData?.map((player, index) => {
             return (
-              <div key={player._id || index} className="player-card">
-                <img src={player.profile_photo} alt={player.name} className="player-image" />
+              <div key={player._id || index} className="player-card " >
+                <img src={player?.profile_photo} alt={player?.name} className="player-image" />
                 <div className="player-info">
-                  <h5>{player.name}</h5>
-                  <p><strong>Role:</strong> {player.role}</p>
+                  <h5>{player?.name}</h5>
+                  <p style={{color:"black"}}><strong style={{color:"black"}}>Role:</strong> {player?.role}</p>
                   <button
                     className="view-button"
                     onClick={() => navigate("/PlayerProfile", { state: { id: player._id } })}
