@@ -26,7 +26,7 @@ export default function Header({ setSearchedList }) {
     <>
       <nav
         className="navbar navbar-dark sticky-top p-3"
-        style={{ background: "linear-gradient(90deg, #002366,#ffffff)" }}>
+        style={{ background: "linear-gradient(90deg, #001a4d, #002366)"}}>
         {/* <img src="./assets/logo.png" margin={"1000px"} height={"30px"} width={"200px"}alt="logo"></img> */}
         {/* <nav className="navbar navbar-dark sticky-top p-3 pb-5" style={{ backdropFilter: 'blur(5px)' }}> */}
         <div className="container-fluid ">

@@ -112,9 +112,10 @@ function WithoutTeam() {
             <div className="text-decoration-underline text-center mt-5" id="playerContainer">
                 <h2>without team</h2>
             </div>
-            <div className="container mt-5 p-2">
+            <div className="container mt-5 p-2">   
                 <div className="row">
                     {players?.map((player, index) => (
+                        
                         <div key={index} className="col-md-3 p-3">
                             <div
                                 className="col md-6 d-flex flex-column"
