@@ -14,17 +14,17 @@ function GoogleSign() {
       const loginInfo = {
         email,password:sub
       }
-      console.log("------------------shree");
-      console.log(loginInfo);
+      console.log("------------------shree : " + loginInfo.password);
+      console.log("helloooo : "+ loginInfo);
       const response = await axios.post(url.player.signin, loginInfo)
-      console.log(response.data)
+      console.log("hello "+response.data)
   }
 
   return (
     <GoogleLogin
       onSuccess={(response) => {
         const data = jwtDecode(response.credential)
-        console.log("????????????????????????",data);
+        console.log("SignIn data : ",data);
         details(data)
         // toast.success("Sign Up Successful");
       }}

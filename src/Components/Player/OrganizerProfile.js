@@ -38,7 +38,7 @@ function LeftSidebar() {
               height: "100px",
               cursor: "pointer",
             }}
-            onClick={() => navigate(`/OrganizerMyProfile/${id}`)}
+            onClick={() => navigate("/OrganizerMyProfile/", { state: { id } })}
           />
         ) : (
           <img

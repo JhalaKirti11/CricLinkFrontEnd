@@ -55,7 +55,7 @@ export default function Header({ setSearchedList }) {
                   <HashLink
                     className="nav-link active"
                     aria-current="page"
-                    to="/Header"
+                    to="/"
                     style={{
                       display: "inline-block",
                       padding: "12px 24px",
