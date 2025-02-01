@@ -28,7 +28,7 @@ export default ({ filteredData }) => {
           style={{ fontFamily: "'Poppins', sans-serif", fontSize: "40px", color: "#ffffff", textDecoration: "underline", }}>PLAYERS</h2>
       </div>
       <div className="container text-center d-flex justify-content-around flex-wrap gap-5 mt-3">
-        {filteredData.map((player, index) => {
+        {filteredData?.map((player, index) => {
           const id = player._id;
           console.log(id);
 

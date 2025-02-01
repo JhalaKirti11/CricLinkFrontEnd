@@ -53,15 +53,15 @@ function UpcomingEvent() {
                         onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
                         onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
                     >
-                        <h6 className="text-primary mb-3" style={{ fontSize: "1.25rem", fontWeight: "600" }}>{tourna.TournamentName}</h6>
+                        <h6 className="text-primary mb-3" style={{ fontSize: "1.25rem", fontWeight: "600" }}>{tourna?.TournamentName}</h6>
                         <p className="mb-2">
-                            <strong>Organizer:</strong> {tourna.organizerId?.name || "Unknown"}
+                            <strong>Organizer:</strong> {tourna?.organizerId?.name || "Unknown"}
                         </p>
                         <p className="mb-2">
-                            <strong>Start:</strong> {new Date(tourna.startDate).toLocaleDateString()}
+                            <strong>Start:</strong> {new Date(tourna?.startDate).toLocaleDateString()}
                         </p>
                         <p className="mb-4">
-                            <strong>End:</strong> {new Date(tourna.endDate).toLocaleDateString()}
+                            <strong>End:</strong> {new Date(tourna?.endDate).toLocaleDateString()}
                         </p>
                         <div className="d-flex justify-content-between">
                             <button

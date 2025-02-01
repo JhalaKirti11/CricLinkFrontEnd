@@ -3,17 +3,17 @@ import '../App.css';
 
 export default function footer() {
     return <>
-        <div id="footer" className='mb-5 w-100   '>
+        <div id="footer" className='mb-5 w-100   ' style={{background: "linear-gradient(90deg,#002366,#ffffff)"}}>
             <div id="container"></div>
             <div id="footer-content">
                 <img src='assets/logo.png' id='logo' alt='logo' />
                 <div id="footer-list">
-                    <HashLink id='footer-list-content' className='text-decoration-none' to='/'>HOME</HashLink>
+                    <HashLink id='footer-list-content' className='text-decoration-none' to='/#'>HOME</HashLink>
                     <HashLink id='footer-list-content' className='text-decoration-none' to='/#AboutContainer'>ABOUT</HashLink>
                     <HashLink id='footer-list-content' className='text-decoration-none' to='/#playerContainer'>PLAYER</HashLink>
                     <HashLink id='footer-list-content' className='text-decoration-none' to='/#tournamentContainer'>TOURNAMENT</HashLink>
                     <HashLink id='footer-list-content' className='text-decoration-none' to='/TeamsPage'>TEAM</HashLink>
-                    <HashLink id='footer-list-content' className='text-decoration-none' to='/WithoutTeam'>Player_Without_Team</HashLink>
+                    <HashLink id='footer-list-content' className='text-decoration-none' to='/WithoutTeam'>Lone Player</HashLink>
                     <HashLink id='footer-list-content' className='text-decoration-none' to='/ContactUs'>CONTACT US</HashLink>
                 </div>
                 <div id="social-media">
