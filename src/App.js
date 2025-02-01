@@ -34,6 +34,9 @@ import { TeamRegister } from "./Components/Tournaments/TeamRegistration";
 import {TournamentCreation} from "./Components/Tournaments/CreateTournament";
 import {OrganizerTournament} from "./Components/Tournaments/OrganizerTournament.js";
 import {UpdateResult} from "./Components/Tournaments/UpdateResult.js";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 
 // import RegistrationForm from './Components/Team/registerTeam.js';
@@ -46,7 +49,9 @@ import './App.css'
 function App() {
 
   return <>
+  <GoogleOAuthProvider clientId='100929584640-iejanv0a3amo52cioffu9cg7j73t48gq.apps.googleusercontent.com'>
     <Routes>
+    
       <Route path='/' element={<Home />} />
 
       <Route path='/signIn' element={<SignIn />} />
@@ -90,6 +95,7 @@ function App() {
     <Route path="/user/:id" element={<PlayersDetail/>} ></Route>
    
     </Routes>
+    </GoogleOAuthProvider>
     {/* <Example/> */}
   </>
 }

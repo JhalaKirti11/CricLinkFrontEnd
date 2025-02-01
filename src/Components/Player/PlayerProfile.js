@@ -28,7 +28,7 @@ export default function PlayerProfile() {
       console.log("--------------------------------------");
       // console.log(state.playerId);
       console.log("state.id : "+state.id);
-      const user = await axios.get(`http://localhost:3001/user/profile/${state.id}`)
+      const user = await axios.get(`http://localhost:3001/user/viewProfile/${state.id}`)
       console.log("USER.DATA : "+user.data)
       setPlayerData(user.data);
     }catch(error){

@@ -54,6 +54,7 @@ const PlayerList = ({ filteredData }) => {
             return (
               <div key={player._id || index} className="player-card">
                 <img src={player.profile_photo} alt={player.name} className="player-image" />
+                {console.log("imagessss is : "+ player.profile_photo )}
                 <div className="player-info">
                   <h5>{player.name}</h5>
                   <p><strong>Role:</strong> {player.role}</p>

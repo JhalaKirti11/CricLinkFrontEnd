@@ -14,27 +14,13 @@ const TournamentById = () => {
 
   const [tournament, setTournament] = useState({});
   const [result, setResult] = useState({ team_name: "", matchId: "", score: null });
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [status, setStatus] = useState({});
+  const [showResultForm, setShowResultForm] = useState(false);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     getTournamentbyId();
   }, []);
-
-  const goToTeamRegistration = (id) => {
-    navigate(`/addTeam/${id}`);
-  };
-
-  const updateTournament = (id) => {
-    navigate(`/UpdateTournament/${id}`);
-  };
-
-  // const handleResult = async (matchId) => {
-  //   navigate(`scheduleResult/${matchId}`);
-  // };
 
   const getTournamentbyId = async () => {
     try {
@@ -45,225 +31,88 @@ const TournamentById = () => {
     }
   };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setResult({ ...result, [name]: value })
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      console.log("Submitting result for Match ID:", result.matchId);
-  
-      const response = await axios.patch(`http://localhost:3001/match/result/${result.matchId}`, result);
-      console.log("Response from server:", response.data.message);
-  
-      // Success message set karein
-      setSuccessMessage(response.data.message);
-      setErrorMessage("");
-  
-      // Tournament state update karein for the specific match
-      setTournament((prevTournament) => {
-        const updatedSchedule = prevTournament.schedule.map((match) => {
-          if (match.matchId?._id === result.matchId) {
-            // Match ka result update karen
-            return {
-              ...match,
-              result: {
-                winnerId: {
-                  teamName: result.team_name,
-                },
-              },
-            };
-          }
-          return match;
-        });
-        return {
-          ...prevTournament,
-          schedule: updatedSchedule,
-        };
-      });
-  
-      // Status state ko false karein for the submitted match
-      setStatus((prevStatus) => ({
-        ...prevStatus,
-        [result.matchId]: false,
-      }));
-  
-      // Form clear karein
-      setResult({ team_name: "", matchId: "", score: null });
-  
-    } catch (err) {
-      console.error("Error occurred:", err.response?.data || err.message);
-      setErrorMessage(err.response?.data?.err || "Internal server error. Please try again later.");
-    }
-  };
-
-
   return (
-    <div style={{ backgroundColor: "white", width: "100%" }}>
-      {/* Hero Section */}
-      <div className="hero-section text-dark p-4 mb-4" style={{ backgroundColor: "#ffffff", borderRadius: "8px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
-        <h1 className="text-center" style={{ fontWeight: "bold", fontSize: "2.5rem", color: "#007BFF" }}>
-          {tournament.TournamentName}
-        </h1>
-        <h3 className="text-muted text-center" style={{ fontSize: "1.2rem" }}>
-          Organized by:{" "}
-          <Link
-            to="/OrganizerMyProfile"
-            state={{ id: tournament.organizerId?._id }}
-            style={{ color: "#007BFF", fontWeight: "bold" }}
-          >
-            {tournament.organizerId?.name || "N/A"}
-          </Link>
-        </h3>
-      </div>
+    <div style={{ background: "linear-gradient(90deg, #001F3F, #0074D9)", minHeight: "100vh", padding: "40px" }}>
+      <h1 className="text-center text-light display-2 font-weight-bold">{tournament.TournamentName}</h1>
+      <h4 className="text-center text-light display-6">Organized by: {tournament.organizerId?.name || "N/A"}</h4>
 
-      <div className="row">
-
-        {/* Left Column: Teams Section */}
-        <div className="col-md-6 mb-4">
-          {/* Entry Fees & Dates Section */}
-          <div className="row mb-4">
-            <div className="col-md-6 offset-md-3 text-center">
-              <h4 className="text-primary" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Entry Fees & Dates</h4>
-              <p style={{ fontSize: "1.2rem", color: "#666" }}><strong style={{ fontSize: "1.2rem", color: "#666" }}>Entry Fees:</strong> {tournament.entry_fees || "0"} rs</p>
-              <p style={{ fontSize: "1.2rem", color: "#666" }}><strong style={{ fontSize: "1.2rem", color: "#666" }}>Start Date:</strong> {tournament.startDate ? new Date(tournament.startDate).toLocaleDateString() : "N/A"}</p>
-              <p style={{ fontSize: "1.2rem", color: "#666" }}><strong style={{ fontSize: "1.2rem", color: "#666" }}>End Date:</strong> {tournament.endDate ? new Date(tournament.endDate).toLocaleDateString() : "N/A"}</p>
-            </div>
-          </div>
-          <hr></hr>
-          <h4 className="text-primary text-center" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Teams Participating</h4>
-          <ul className="text-center" style={{ listStyleType: "none", padding: "0" }}>
+      <div className="row mt-5">
+        <div className="col-md-6">
+          <h3 className="text-light font-weight-bold">Entry Fees & Dates</h3>
+          <p className="fs-4 text-light"><strong>Entry Fees:</strong> {tournament.entry_fees || "0"} Rs</p>
+          <p className="fs-4 text-light"><strong>Start Date:</strong> {tournament.startDate ? new Date(tournament.startDate).toLocaleDateString() : "N/A"}</p>
+          <p className="fs-4 text-light"><strong>End Date:</strong> {tournament.endDate ? new Date(tournament.endDate).toLocaleDateString() : "N/A"}</p>
+        </div>
+        
+        <div className="col-md-6">
+          <h3 className="text-light font-weight-bold">Teams Participating</h3>
+          <ul className="fs-4 text-light">
             {tournament.teams?.length ? (
               tournament.teams.map((team, index) => (
-                <li key={index} style={{ padding: "10px", borderBottom: "1px solid #ddd", backgroundColor: "#ffffff" }}>
-                  <span style={{ fontSize: "1.2rem", color: "#333", fontWeight: "bold" }}>Team {index + 1} </span>
-                  <Link to={`/Team/${team.teamId?._id}`} style={{ color: "#007BFF", fontSize: "1.2rem", fontWeight: "bold" }}>
+                <li key={index}>
+                  <strong>Team {index + 1}: </strong>
+                  <Link to={`/Team/${team.teamId?._id}`} className="text-warning">
                     {team.teamId?.teamName || "Unnamed Team"}
-
                   </Link>
                 </li>
               ))
             ) : (
-              <li className="text-muted text-center" style={{ backgroundColor: "#ffffff", fontSize: "1.2rem" }}>No teams registered yet.</li>
-            )}
-          </ul>
-        </div>
-
-        {/* Right Column: Schedule Section */}
-        <div className="col-md-6 mb-4">
-          <h4 className="text-primary text-center" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Tournament Schedule</h4>
-          <ul style={{ listStyleType: "none", padding: "0" }}>
-            {tournament.schedule?.length ? (
-              tournament.schedule.map((match, index) => (
-
-                <li key={index} style={{ padding: "10px", borderBottom: "1px solid #ddd", backgroundColor: "#ffffff" }}>
-                  <strong style={{ fontSize: "1.2rem", color: "#333" }}>Match {index + 1}</strong><br />
-                  <p style={{ fontSize: "1.1rem", color: "#333" }}>{match.matchId?.team1?.teamName || "N/A"} vs {match.matchId?.team2?.teamName || "N/A"}</p>
-                  <small style={{ fontSize: "1rem", color: "#666" }}>{new Date(match.matchId?.date).toLocaleDateString()} | {match.matchId?.venue || "N/A"}</small>
-                  <p className="text-dark">Winner : {match.result?.winnerId?.teamName}</p>
-                  <p className="text-dark">Score : {match.result?.score}</p>
-
-                  {successMessage && <p className="alert alret-success text-dark">{successMessage}</p>}
-                  {errorMessage && <p className="alert alert-danger text-dark">Sorry! {errorMessage}</p>}
-
-                  {status[match.matchId?._id] &&
-                    <form onSubmit={handleFormSubmit} method="patch">
-                      <div className="mb-1">
-
-                        <input
-                          type="hidden"
-                          name="matchId"
-                          id="matchId"
-                          value={match.matchId?._id}
-                        />
-
-
-                        <label className="form-label text-dark">
-                          Winning Team
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="team_name"
-                          id="team_name"
-                          value={result.team_name}
-                          placeholder="Enter Winner Team"
-                          onChange={handleInputChange} required />
-                      </div>
-
-                      <div className="mb-3">
-                        <label className="form-label text-dark">
-                          Score
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="score"
-                          id="score"
-                          value={result.score}
-                          placeholder="Enter score"
-                          onChange={handleInputChange} required />
-                      </div>
-
-                      <button type="submit" className="btn btn-success">
-                        Submit
-                      </button>
-                    </form>
-                  }
-
-                  <div className="d-flex justify-content-between mt-2">
-                    {!status[match.matchId?._id] && token ? (
-                      <button
-                        className="btn btn-outline-primary btn-sm"
-                        onClick={() => {
-                          setStatus((prevStatus) => ({
-                            ...prevStatus,
-                            [match.matchId?._id]: true,
-                          }));
-                          setResult((prevResult) => ({
-                            ...prevResult,
-                            matchId: match.matchId?._id,
-                          }));
-                        }}
-                      >
-                        Update Result
-                      </button>
-                    ) : null }
-
-
-                  </div>
-                </li>
-              ))
-            ) : (
-              <li className="text-muted text-center" style={{ backgroundColor: "#ffffff", fontSize: "1.2rem" }}>No matches scheduled.</li>
+              <li className="text-muted">No teams registered yet.</li>
             )}
           </ul>
         </div>
       </div>
 
+      <h3 className="text-light mt-5 font-weight-bold">Tournament Schedule</h3>
+      <ul className="fs-4 text-light">
+        {tournament.schedule?.length ? (
+          tournament.schedule.map((match, index) => (
+            <li key={index} className="mb-4 p-4" style={{ background: "#00509E", borderRadius: "10px" }}>
+              <p><strong>Match {index + 1}:</strong> {match.matchId?.team1?.teamName || "N/A"} vs {match.matchId?.team2?.teamName || "N/A"}</p>
+              <p><strong>Venue:</strong> {match.matchId?.venue || "N/A"}</p>
+              <p><strong>Winner:</strong> {match.result?.winnerId?.teamName || "Not decided yet"}</p>
+              <p><strong>Score:</strong> {match.result?.score || "N/A"}</p>
+              {id === tournament?.organizerId?._id && (
+                <button className="btn btn-sm btn-warning mt-2" onClick={() => setShowResultForm(!showResultForm)}>
+                  {showResultForm ? "Hide" : "Update Match Result"}
+                </button>
+              )}
+            </li>
+          ))
+        ) : (
+          <li className="text-muted">No matches scheduled.</li>
+        )}
+      </ul>
 
+      {showResultForm && (
+        <div>
+          <h3 className="text-light mt-5 font-weight-bold">Update Match Result</h3>
+          <form className="fs-4 text-light">
+            <label>Match ID:</label>
+            <input type="text" className="form-control" value={result.matchId} onChange={(e) => setResult({ ...result, matchId: e.target.value })} />
 
-      {/* Registration/Update Button */}
-      <div className="text-center">
+            <label>Winning Team:</label>
+            <input type="text" className="form-control" value={result.team_name} onChange={(e) => setResult({ ...result, team_name: e.target.value })} />
+
+            <label>Score:</label>
+            <input type="number" className="form-control" value={result.score} onChange={(e) => setResult({ ...result, score: e.target.value })} />
+
+            <button type="submit" className="btn btn-success mt-3">Update Result</button>
+          </form>
+        </div>
+      )}
+
+      <div className="text-center mt-5">
         <button
-          className={`btn btn-lg ${!token ? "btn-warning" : "btn-success"}`}
+          className="btn btn-lg btn-warning fw-bold px-5 py-3"
           onClick={() => {
             if (!token) {
               Swal.fire("Sign-in Required", "Please sign in to register for the tournament.", "warning");
             } else if (id === tournament?.organizerId?._id) {
-              updateTournament(tournament._id);
-            } else if (tournament.status !== "inactive") {
-              goToTeamRegistration(tournament._id);
+              navigate(`/UpdateTournament/${tournament._id}`);
+            } else {
+              navigate(`/addTeam/${tournament._id}`);
             }
-          }}
-          style={{
-            padding: "12px 30px",
-            fontSize: "1.1rem",
-            borderRadius: "5px",
-            fontWeight: "bold",
-            marginTop: "20px",
           }}
         >
           {id === tournament?.organizerId?._id ? "Update Tournament" : "Register"}
@@ -274,6 +123,8 @@ const TournamentById = () => {
 };
 
 export default TournamentById;
+
+
 
 
 //=====================================================================
