@@ -86,20 +86,20 @@ export default function Home() {
     let [searchedList, setSearchedList] = useState('');
     let [filteredData, setFilteredData] = useState([]);
 
-    useEffect(() => {
-        console.log('searchedList22', searchedList);
+    // useEffect(() => {
+    //     console.log('searchedList22', searchedList);
 
-        axios.post(url.player?.searchByCategory, { searchedList })
-            .then(response => {
-                let flattedArray = response.data.data;
-                console.log("Before", flattedArray);
-                flattedArray = flattedArray.map(subCategory => subCategory.players).flat();
-                setFilteredData("After", flattedArray);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, [searchedList]);
+    //     axios.post(url.player?.searchByCategory, { searchedList })
+    //         .then(response => {
+    //             let flattedArray = response.data.data;
+    //             console.log("Before", flattedArray);
+    //             flattedArray = flattedArray.map(subCategory => subCategory.players).flat();
+    //             setFilteredData("After", flattedArray);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }, [searchedList]);
 
     return (
         <>

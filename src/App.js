@@ -27,6 +27,7 @@ import SendRequest from "./Components/Team/SendRequest"
 
 
 // import Tournament from './Components/Tournaments/Tournament.js';
+import {PlayerMatch} from './Components/Player/PlayerMatch.js';
 import {UpdateSchedule} from './Components/Tournaments/UpdateSchedule.js';
 import ParticularTournament from "./Components/Tournaments/ParticularTournament.js";
 import UpcomingTournamentsCards from "./Components/Tournaments/UpcomingTournamentsCards";
@@ -38,7 +39,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
-
+//PlayerMatch
 // import RegistrationForm from './Components/Team/registerTeam.js';
 import Teams from './Components/Team/team.js';
 import TeamDetail from './Components/Team/TeamDetails.js';
@@ -76,7 +77,7 @@ function App() {
       <Route path="/Team/req-to-join/:id" element={<SendRequest/>} ></Route>
       {/* <Route path="/reqCaptainToPlayer/:id" element={<ReqCaptainToPlayer/>}/> */}
 
-
+      <Route path="/PlayerMatch" element={<PlayerMatch/>} />
       <Route path='/updateTournament/:id' element={<UpdateSchedule />} />
       <Route path="/tournamentById/:id" element={<ParticularTournament />} />
       <Route path="/UpcomingTournamentsCards" element={<UpcomingTournamentsCards/>}/>

@@ -1,4 +1,3 @@
-
 // import { useNavigate, Link } from "react-router-dom";
 // import { HashLink } from "react-router-hash-link";
 // import { useState } from "react";
@@ -269,11 +268,14 @@ export default function SignIn() {
     event.preventDefault();
     try {
       const formData = { email, password };
-      // console.log('Form Data:', formData);
+      console.log('Form Data:', formData);
       const response = await axios.post(url.player.signin, formData);
       console.log("======================================================");
       console.log("Sign In Response:", response.data);
       console.log("======================================================");
+      if(response.data.error){
+        alert("invalid");
+      }
       console.log("Sign In Response:", response.data.user.role);
       dispatch(setUser(response.data));
 
@@ -281,9 +283,7 @@ export default function SignIn() {
       toast.success("Sign In Successful");
       setTimeout(() => {
         if (
-          response.data.user.role == "player" ||
-          response.data.user.role == "captain"
-        ) {
+          response.data.user.role == "player") {
           navigate("/PlayerMyProfile");
         } else if (response.data.user.role == "organizer") {
           console.log("sign successful");

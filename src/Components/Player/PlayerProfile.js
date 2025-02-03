@@ -1,9 +1,10 @@
-
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux"; // Redux se token access karne ke liye
 import axios from "axios";
 import Swal from "sweetalert2";
+import {PlayerMatch} from "./PlayerMatch";
+
 
 
 export default function PlayerProfile() {
@@ -62,64 +63,74 @@ export default function PlayerProfile() {
   }
 
   return (
-    <div className="container d-flex justify-content-center align-items-center p-8 text-light" style={{ minHeight: "100vh" }}>
-      <div className="bg-dark rounded shadow-lg" style={{ width: "100%", maxWidth: "800px" }}>
+    <div className="container d-flex flex-column align-items-center mt-5 p-5 text-light" style={{ maxHeight: "100vh" }}>
+      
+      {/* Player Details Card */}
+      <div className="bg-white rounded shadow-lg text-dark p-4 mb-4" style={{ width: "100%", maxWidth: "700px", height: "550px" }}>
+        
         {/* Back Button */}
-        <i
-          className="btn fa-solid fa-arrow-left fa-2xl mb-4"
+        <i className="btn fa-solid fa-arrow-left fa-1xl mb-4 mt-2"
           onClick={() => navigate(-1)}
-          style={{ color: "#ffffff", cursor: "pointer" }}
-        ></i>
-
+          style={{ color: "black", cursor: "pointer" }}>
+        </i>
+  
         {/* Page Title */}
-        <div className="text-center mb-4">
-          <h2 className="text-decoration-underline">Player Details</h2>
+        <div className="text-center mb-2">
+          <h2 className="text-decoration-underline text-dark">Player Details</h2>
         </div>
-
+  
         {/* Player Details Section */}
         <div className="row">
+          
           {/* Player Image and Skills */}
-          <div className="col-md-4 text-center mb-4">
-            <img src={playerData?.profile_photo || "/user.webp"} width="100%" height="300rem" alt="Player" style={{ objectFit: "cover", borderRadius: "10px" }} />
-            <h4 className="mt-3">{playerData?.name}</h4>
-            <h3 className="mt-3">
-              <strong>Skills: </strong>{playerData.profile?.skills || "N/A"}
-            </h3>
+          <div className="col-md-4 text-center mb-4 p-4">
+            <img src={playerData?.profile_photo || "/user.webp"} width="100%" height="300rem" alt="Player"
+              style={{ objectFit: "cover", borderRadius: "10px" }} />
+            <h4 className="mt-3 text-dark">{playerData?.name}</h4>
           </div>
-
+  
           {/* Player Details Form */}
-          <div className="col-md-8">
+          <div className="col-md-8 p-4 text-dark">
             <form>
               <div className="mb-3">
                 <label>Role</label>
-                <input type="text" name="role" value={playerData?.role} readOnly className="form-control bg-dark text-white"
-                />
+                <input type="text" name="role" value={playerData?.role} readOnly className="form-control bg-white text-dark" />
               </div>
               <div className="mb-3">
                 <label>Experience</label>
-                <input type="text" name="experience" value={playerData.profile?.experience || "N/A"} readOnly className="form-control bg-dark text-white" />
+                <input type="text" name="experience" value={playerData.profile?.experience || "N/A"} readOnly className="form-control bg-white text-dark" />
               </div>
               <div className="mb-3">
                 <label>Location</label>
-                <input type="text" name="location" value={playerData.profile?.location || "N/A"} readOnly className="form-control bg-dark text-white" />
+                <input type="text" name="location" value={playerData.profile?.location || "N/A"} readOnly className="form-control bg-white text-dark" />
               </div>
-              </form>
-
-            {/* Conditionally render Send Request button */}
-            { id == state.id ? (
-              <button className="btn btn-primary" style={{ mt: 4 }}
-                onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Update Profile</button>
-            ) : (
-              <button className="btn btn-primary" style={{ mt: 4 }}
-              onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Send Request</button>
+              <div className="mb-3">
+                <label>Skill</label>
+                <input type="text" name="skill" value={playerData.profile?.skills || "N/A"} readOnly className="form-control bg-white text-dark" />
+              </div>
+            </form>
+  
+            {/* Conditionally render Send Request / Update Profile button */}
+            {id === state.id ? (
+              <button className="btn btn-primary mt-3" onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Update Profile</button>
+            ) : !token ? (
+              <button className="btn btn-primary mt-3"                    onClick={() => Swal.fire("Sign-in Required", "Please sign in to join.", "warning")}>Send Request</button>
+            ):(
+              <button className="btn btn-primary mt-3" onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Send Request</button>
             )}
-              
+  
           </div>
         </div>
       </div>
+  
+      {/* Divider */}
+      <hr style={{ width: "100%", maxWidth: "700px", borderTop: "2px solid #ddd" }} />
+  
+      {/* PlayerMatch Component Below */}
+      <div className="container mt-4" style={{ width: "100%", maxWidth: "900px" }}>
+        <PlayerMatch />
+      </div>
     </div>
-
-
   );
-
+  
 }

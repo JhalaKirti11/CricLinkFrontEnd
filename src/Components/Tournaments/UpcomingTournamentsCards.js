@@ -164,7 +164,7 @@ function UpcomingTournamentsCards() {
                         <h2 className="text-dark" style={{ cursor: 'pointer', fontSize: '2.8rem', fontWeight: 'bold' }} onClick={() => navigate(`/tournamentById/${tourna._id}`)}>
                             {tourna.TournamentName}
                         </h2>
-                        <h4 className="text-muted">Organizer: {tourna.organizerId.name}</h4>
+                        <h4 className="text-muted">Organizer: {tourna.organizerId?.name}</h4>
                         <p style={{ fontSize: '1.8rem', fontWeight: '500' }}>{tourna.address}</p>
                         <p style={{ fontSize: '1.6rem', color: '#444' }}>{tourna.description || "Tournament details coming soon."}</p>
                         <h3 className="text-success" style={{ fontSize: '2rem', fontWeight: 'bold' }}>Entry Fee: &#8377; {tourna.entry_fees}</h3>
@@ -189,7 +189,7 @@ function UpcomingTournamentsCards() {
                     </div>
                     <div className="col-8 px-5">
                         <h2 className="text-dark" style={{ fontSize: '2.8rem', fontWeight: 'bold' }}>{tourna.TournamentName}</h2>
-                        <h4 className="text-muted">Organizer: {tourna.organizerId.name}</h4>
+                        <h4 className="text-muted">Organizer: {tourna.organizerId?.name}</h4>
                         <p style={{ fontSize: '1.8rem', fontWeight: '500' }}>{tourna.address}</p>
                         <p style={{ fontSize: '1.6rem', color: '#444' }}>{tourna.description || "Tournament details coming soon."}</p>
                         <h3 className="text-danger" style={{ fontSize: '2rem', fontWeight: 'bold' }}>Completed</h3>
