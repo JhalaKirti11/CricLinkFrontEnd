@@ -27,6 +27,7 @@ import SendRequest from "./Components/Team/SendRequest"
 
 
 // import Tournament from './Components/Tournaments/Tournament.js';
+import {PlayerMatch} from './Components/Player/PlayerMatch.js';
 import {UpdateSchedule} from './Components/Tournaments/UpdateSchedule.js';
 import ParticularTournament from "./Components/Tournaments/ParticularTournament.js";
 import UpcomingTournamentsCards from "./Components/Tournaments/UpcomingTournamentsCards";
@@ -34,8 +35,11 @@ import { TeamRegister } from "./Components/Tournaments/TeamRegistration";
 import {TournamentCreation} from "./Components/Tournaments/CreateTournament";
 import {OrganizerTournament} from "./Components/Tournaments/OrganizerTournament.js";
 import {UpdateResult} from "./Components/Tournaments/UpdateResult.js";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
-
+//PlayerMatch
 // import RegistrationForm from './Components/Team/registerTeam.js';
 import Teams from './Components/Team/team.js';
 import TeamDetail from './Components/Team/TeamDetails.js';
@@ -46,7 +50,9 @@ import './App.css'
 function App() {
 
   return <>
+  <GoogleOAuthProvider clientId='100929584640-iejanv0a3amo52cioffu9cg7j73t48gq.apps.googleusercontent.com'>
     <Routes>
+    
       <Route path='/' element={<Home />} />
 
       <Route path='/signIn' element={<SignIn />} />
@@ -71,7 +77,7 @@ function App() {
       <Route path="/Team/req-to-join/:id" element={<SendRequest/>} ></Route>
       {/* <Route path="/reqCaptainToPlayer/:id" element={<ReqCaptainToPlayer/>}/> */}
 
-
+      <Route path="/PlayerMatch" element={<PlayerMatch/>} />
       <Route path='/updateTournament/:id' element={<UpdateSchedule />} />
       <Route path="/tournamentById/:id" element={<ParticularTournament />} />
       <Route path="/UpcomingTournamentsCards" element={<UpcomingTournamentsCards/>}/>
@@ -90,6 +96,7 @@ function App() {
     <Route path="/user/:id" element={<PlayersDetail/>} ></Route>
    
     </Routes>
+    </GoogleOAuthProvider>
     {/* <Example/> */}
   </>
 }

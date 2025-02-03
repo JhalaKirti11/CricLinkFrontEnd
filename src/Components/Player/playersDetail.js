@@ -37,7 +37,7 @@ function PlayersDetail() {
         {/* Player Photo */}
         <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
           <img
-            src={player.profile_photo || "/user.webp"}
+            src={player?.profile_photo || "/user.webp"}
             alt={player.name}
             style={{
               width: "300px", // Increased width

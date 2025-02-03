@@ -40,7 +40,7 @@ const navigate = useNavigate();
           <div className="row">
             {tournament.map((tourna, index) => (
               <div key={index} className="col-md-4 col-sm-6 mb-4">
-                <div className="card bg-dark text-white shadow-sm border rounded p-3">
+                <div className="card text-white shadow-sm border rounded p-3">
                   <h6 className="text-primary" style={{ fontSize: "1.25rem" }}>{tourna.TournamentName}</h6>
                   <p style={{ fontSize: "1rem" }}>
                     <strong>Organizer:</strong> {tourna.organizerId?.name || "Unknown"}

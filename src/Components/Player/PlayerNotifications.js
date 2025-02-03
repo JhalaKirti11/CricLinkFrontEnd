@@ -12,7 +12,7 @@
 //     const [notifications, setNotifications] = useState([]);
 //     const [status, setStatus] = useState("pending");
 //     const [message, setMessage] = useState("");
-    
+
 //     const [teamId, setTeamId] = useState("");
 //     const [playerId, setPlayerId] = useState("");
 //     let params = useParams();
@@ -47,7 +47,7 @@
 //         try {
 //             console.log("Team Id : "+ teamId + " Player Id : "+ playerId)
 //             // const status = "accepted";
-           
+
 //             // const playerId = params.userId;
 
 //             const response = await axios.put(`http://localhost:3001/Team/req-res2`, { statusR, playerId, teamId });
@@ -142,7 +142,7 @@
 //           )}
 //         </div>
 //       );
-      
+
 // }
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -176,7 +176,7 @@ export const PlayerNotifications = () => {
 
     const fetchTeams = async () => {
         try {
-            const response = await axios.get("http://localhost:3001/Team/viewteam"); 
+            const response = await axios.get("http://localhost:3001/Team/viewteam");
             setTeams(response.data.Team);
         } catch (error) {
             console.log("Error fetching teams: ", error);
@@ -205,16 +205,16 @@ export const PlayerNotifications = () => {
                 alert("Request accepted!");
 
                 // Update the notification status in the frontend
-                setNotifications((prevNotifications) => 
+                setNotifications((prevNotifications) =>
                     prevNotifications?.map((notice) => {
                         console.log("Sender ID:", notice?.senderId);
                         console.log("Receiver ID:", notice?.receiverId);
 
                         if (notice?.senderId?._id === senderId && notice?.receiverId?._id === userId) {
                             return { ...notice, status: "accepted" };  // Status ko update kar rahe hain
-                         }
-                       
-                        return notice;  
+                        }
+
+                        return notice;
                     })
                 );
             }
@@ -247,17 +247,17 @@ export const PlayerNotifications = () => {
                 setMessage("Request rejected");
                 alert("Request rejected!");
 
-        
-                setNotifications((prevNotifications) => 
+
+                setNotifications((prevNotifications) =>
                     prevNotifications?.map((notice) => {
                         console.log("Sender ID:", notice?.senderId);
                         console.log("Receiver ID:", notice?.receiverId);
-                        
+
                         if (notice?.senderId?._id === senderId && notice?.receiverId?._id === userId) {
                             return { ...notice, status: "rejected" };  // Status ko update kar rahe hain
                         }
-                       
-                        return notice;  
+
+                        return notice;
                     })
                 );
             }
@@ -283,45 +283,45 @@ export const PlayerNotifications = () => {
                     </div>
                 ) : (
                     <div className="row">
-                       {notifications?.map((notice, index) => {
-    const team = teams.find((team) => team?.captainId._id === userId);
-    const isCaptain = team ? true : false;
+                        {notifications?.map((notice, index) => {
+                            const team = teams.find((team) => team?.captainId._id === userId);
+                            const isCaptain = team ? true : false;
 
-    return (
-        <div key={notice?._id || notice?.senderId?._id} className="col-md-4 mb-4">
-            <div
-                className="card shadow-sm"
-                style={{ backgroundColor: "black", borderLeft: "4px solid #007bff" }}
-            >
-                <div className="card-body">
-                    <h5 className="card-title text-primary">Notification Type: {notice?.type}</h5>
-                    {notice.senderId && <p className="mb-1" style={{ fontSize: "1rem" }}><strong>Sender:</strong> {notice?.senderId?.name}</p>}
-                    {notice.receiverId && <p className="mb-1" style={{ fontSize: "1rem" }}><strong>Receiver:</strong> {notice?.receiverId?.name}</p>}
-                    <p className="card-text"><strong>Message:</strong> {notice?.message}</p>
-                    <p className="card-text text-muted"><strong>Status:</strong> {notice?.status}</p>
+                            return (
+                                <div key={notice?._id || notice?.senderId?._id} className="col-md-4 mb-4">
+                                    <div
+                                        className="card shadow-sm"
+                                        style={{ backgroundColor: "skyblue", borderLeft: "4px solid #007bff" }}
+                                    >
+                                        <div className="card-body" >
+                                            <h5 className="card-title text-primary">Notification Type: {notice?.type}</h5>
+                                            {notice.senderId && <p className="mb-1" style={{ fontSize: "1rem" }}><strong>Sender:</strong> {notice?.senderId?.name}</p>}
+                                            {notice.receiverId && <p className="mb-1" style={{ fontSize: "1rem" }}><strong>Receiver:</strong> {notice?.receiverId?.name}</p>}
+                                            <p className="card-text"><strong>Message:</strong> {notice?.message}</p>
+                                            <p className="card-text text-muted"><strong>Status:</strong> {notice?.status}</p>
 
-                    {/* Buttons only for captain */}
-                    {isCaptain && notice?.status === "pending" && (
-                        <div className="d-flex justify-content-end">
-                            <button
-                                className="btn btn-success btn-sm me-2"
-                                onClick={() => ReqAccepted(userId, notice?.senderId?._id)}
-                            >
-                                Accept
-                            </button>
-                            <button
-                                className="btn btn-danger btn-sm"
-                                onClick={() => ReqRejected(userId, notice?.senderId?._id)}
-                            >
-                                Reject
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
-})}
+                                            {/* Buttons only for captain */}
+                                            {isCaptain && notice?.status === "pending" && (
+                                                <div className="d-flex justify-content-end">
+                                                    <button
+                                                        className="btn btn-success btn-sm me-2"
+                                                        onClick={() => ReqAccepted(userId, notice?.senderId?._id)}
+                                                    >
+                                                        Accept
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-danger btn-sm"
+                                                        onClick={() => ReqRejected(userId, notice?.senderId?._id)}
+                                                    >
+                                                        Reject
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
 
                     </div>
                 )}

@@ -10,8 +10,8 @@ export default ({ filteredData }) => {
     axios
       .get("http://localhost:3001/user/playerList")
       .then((response) => {
-        console.log("response.data:", response.data);
-        setPlayerList(response.data.user);
+        console.log("response.data:", response.data.players);
+        setPlayerList(response.data.players);
       })
       .catch((err) => {
         console.error("Error fetching players:", err);
@@ -41,7 +41,7 @@ export default ({ filteredData }) => {
               <img
                 src={player.profile_photo}
                 className="card-img-top"
-                style={{ height: "8rem" }}
+                style={{ height: "12rem" }}
                 alt="Player"
               />
               <div className="card-body">
@@ -52,14 +52,14 @@ export default ({ filteredData }) => {
                   {player.name}
                 </h5>
                 <p className="card-text text-white">
-                  <strong>Email:</strong> {player.email || "N/A"}
+                  <strong className="text-white">Email:</strong> {player.email || "N/A"}
                   {/* <br />
                   <strong>Contact:</strong> {player.contact || "N/A"} */}
                   <br />
-                  <strong>Role:</strong> {player.role}
+                  <strong className="text-white">Role:</strong> {player.role}
                 </p>
                 <button
-                  className="btn btn-outline-secondary"
+                  className="btn btn-outline-secondary mb-1"
                   onClick={() => {
                     console.log(
                       "Navigating to PlayerProfile with player:",
