@@ -24,10 +24,10 @@ let url = {
             viewcard: 'http://localhost:3001/user/profile/:userId',
         //  signup: 'http://localhost:3001/user/sigup',
             signup: 'http://localhost:3001/user/signup',
-
             signin: 'http://localhost:3001/user/signin', 
             sendOTP: "http://localhost:5000/api/user/sendOTP",
-            sendRequest: 'http://localhost:3001/player/sendRequest'
+            sendRequest: 'http://localhost:3001/player/sendRequest',
+            searchByCategory: 'http://localhost:3001/player/searchByCategory'
 
             // signup: 'http://localhost:3001/user/signUp',
             // signin: 'http://localhost:3001/user/signIn', 

@@ -40,7 +40,7 @@ function UpcomingEvent() {
     return (
         <div className="container text-white">
             <div className="d-flex justify-content-end mb-3">
-                <button className="btn btn-outline-light rounded-pill px-4 py-2" onClick={() => navigate("/UpcomingTournamentsCards")}>
+                <button className="btn btn-outline-primary rounded-pill px-4 py-2" onClick={() => navigate("/UpcomingTournamentsCards")}>
                     View All
                 </button>
             </div>
@@ -48,7 +48,7 @@ function UpcomingEvent() {
                 {tournament.slice(0, 4).map((tourna, index) => (
                     <div
                         key={index}
-                        className="card bg-dark text-white shadow-lg rounded-3 d-inline-block p-4 mx-2 my-3"
+                        className="card text-white shadow-lg rounded-3 d-inline-block p-4 mx-2 my-3"
                         style={{ minWidth: "280px", maxWidth: "320px", fontSize: "1rem", transition: "transform 0.3s ease-in-out" }}
                         onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
                         onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
