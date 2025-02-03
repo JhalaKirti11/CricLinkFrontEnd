@@ -1,128 +1,129 @@
-import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import url from "../../URL/url.js";
-import { useSelector } from "react-redux";
-import Swal from 'sweetalert2';
+// import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+// import url from "../../URL/url.js";
+// import { useSelector } from "react-redux";
+// import Swal from 'sweetalert2';
 
-const TournamentById = () => {
-  const params = useParams();
-  const { state } = useLocation();
-  const id = useSelector((state) => state.User.user._id);
-  const role = useSelector((state) => state.User.user.role);
-  const token = useSelector((state) => state.User?.token);
+// const TournamentById = () => {
+//   const params = useParams();
+//   const { state } = useLocation();
+//   const id = useSelector((state) => state.User.user._id);
+//   const role = useSelector((state) => state.User.user.role);
+//   const token = useSelector((state) => state.User?.token);
 
-  const [tournament, setTournament] = useState({});
-  const [result, setResult] = useState({ team_name: "", matchId: "", score: null });
-  const [status, setStatus] = useState({});
-  const [showResultForm, setShowResultForm] = useState(false);
-  const navigate = useNavigate();
+//   const [tournament, setTournament] = useState({});
+//   const [result, setResult] = useState({ team_name: "", matchId: "", score: null });
+//   const [status, setStatus] = useState({});
+//   const [showResultForm, setShowResultForm] = useState(false);
+//   const navigate = useNavigate();
 
-  useEffect(() => {
-    getTournamentbyId();
-  }, []);
+//   useEffect(() => {
+//     getTournamentbyId();
+//   }, []);
 
-  const getTournamentbyId = async () => {
-    try {
-      let response = await axios.get(url.tournament.TOURNAMENT_BY_ID + `/tournamentById/${params.id}`);
-      setTournament(response.data.data[0]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+//   const getTournamentbyId = async () => {
+//     try {
+//       let response = await axios.get(url.tournament.TOURNAMENT_BY_ID + `/tournamentById/${params.id}`);
+//       setTournament(response.data.data[0]);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
 
-  return (
-    <div style={{ background: "linear-gradient(90deg, #001F3F, #0074D9)", minHeight: "100vh", padding: "40px" }}>
-      <h1 className="text-center text-light display-2 font-weight-bold">{tournament.TournamentName}</h1>
-      <h4 className="text-center text-light display-6">Organized by: {tournament.organizerId?.name || "N/A"}</h4>
+//   return (
+//     <div style={{ background: "linear-gradient(90deg, #001F3F, #0074D9)", minHeight: "100vh", padding: "40px" }}>
+//       <h1 className="text-center text-light display-2 font-weight-bold">{tournament.TournamentName}</h1>
+//       <h4 className="text-center text-light display-6">Organized by: {tournament.organizerId?.name || "N/A"}</h4>
 
-      <div className="row mt-5">
-        <div className="col-md-6">
-          <h3 className="text-light font-weight-bold">Entry Fees & Dates</h3>
-          <p className="fs-4 text-light"><strong>Entry Fees:</strong> {tournament.entry_fees || "0"} Rs</p>
-          <p className="fs-4 text-light"><strong>Start Date:</strong> {tournament.startDate ? new Date(tournament.startDate).toLocaleDateString() : "N/A"}</p>
-          <p className="fs-4 text-light"><strong>End Date:</strong> {tournament.endDate ? new Date(tournament.endDate).toLocaleDateString() : "N/A"}</p>
-        </div>
+//       <div className="row mt-5">
+//         <div className="col-md-6">
+//           <h3 className="text-light font-weight-bold">Entry Fees & Dates</h3>
+//           <p className="fs-4 text-light"><strong>Entry Fees:</strong> {tournament.entry_fees || "0"} Rs</p>
+//           <p className="fs-4 text-light"><strong>Start Date:</strong> {tournament.startDate ? new Date(tournament.startDate).toLocaleDateString() : "N/A"}</p>
+//           <p className="fs-4 text-light"><strong>End Date:</strong> {tournament.endDate ? new Date(tournament.endDate).toLocaleDateString() : "N/A"}</p>
+//         </div>
         
-        <div className="col-md-6">
-          <h3 className="text-light font-weight-bold">Teams Participating</h3>
-          <ul className="fs-4 text-light">
-            {tournament.teams?.length ? (
-              tournament.teams.map((team, index) => (
-                <li key={index}>
-                  <strong>Team {index + 1}: </strong>
-                  <Link to={`/Team/${team.teamId?._id}`} className="text-warning">
-                    {team.teamId?.teamName || "Unnamed Team"}
-                  </Link>
-                </li>
-              ))
-            ) : (
-              <li className="text-muted">No teams registered yet.</li>
-            )}
-          </ul>
-        </div>
-      </div>
+//         <div className="col-md-6">
+//           <h3 className="text-light font-weight-bold">Teams Participating</h3>
+//           <ul className="fs-4 text-light">
+//             {tournament.teams?.length ? (
+//               tournament.teams.map((team, index) => (
+//                 <li key={index}>
+//                   <strong>Team {index + 1}: </strong>
+//                   <Link to={`/Team/${team.teamId?._id}`} className="text-warning">
+//                     {team.teamId?.teamName || "Unnamed Team"}
+//                   </Link>
+//                 </li>
+//               ))
+//             ) : (
+//               <li className="text-muted">No teams registered yet.</li>
+//             )}
+//           </ul>
+//         </div>
+//       </div>
 
-      <h3 className="text-light mt-5 font-weight-bold">Tournament Schedule</h3>
-      <ul className="fs-4 text-light">
-        {tournament.schedule?.length ? (
-          tournament.schedule.map((match, index) => (
-            <li key={index} className="mb-4 p-4" style={{ background: "#00509E", borderRadius: "10px" }}>
-              <p><strong>Match {index + 1}:</strong> {match.matchId?.team1?.teamName || "N/A"} vs {match.matchId?.team2?.teamName || "N/A"}</p>
-              <p><strong>Venue:</strong> {match.matchId?.venue || "N/A"}</p>
-              <p><strong>Winner:</strong> {match.result?.winnerId?.teamName || "Not decided yet"}</p>
-              <p><strong>Score:</strong> {match.result?.score || "N/A"}</p>
-              {id === tournament?.organizerId?._id && (
-                <button className="btn btn-sm btn-warning mt-2" onClick={() => setShowResultForm(!showResultForm)}>
-                  {showResultForm ? "Hide" : "Update Match Result"}
-                </button>
-              )}
-            </li>
-          ))
-        ) : (
-          <li className="text-muted">No matches scheduled.</li>
-        )}
-      </ul>
+//       <h3 className="text-light mt-5 font-weight-bold">Tournament Schedule</h3>
+//       <ul className="fs-4 text-light">
+//         {tournament.schedule?.length ? (
+//           tournament.schedule.map((match, index) => (
+//             <li key={index} className="mb-4 p-4" style={{ background: "#00509E", borderRadius: "10px" }}>
+//               <p><strong>Match {index + 1}:</strong> {match.matchId?.team1?.teamName || "N/A"} vs {match.matchId?.team2?.teamName || "N/A"}</p>
+//               <p><strong>MatchId:</strong> {match?.matchId?.matchId || "N/A"}</p>
+//               <p><strong>Venue:</strong> {match.matchId?.venue || "N/A"}</p>
+//               <p><strong>Winner:</strong> {match.result?.winnerId?.teamName || "Not decided yet"}</p>
+//               <p><strong>Score:</strong> {match.result?.score || "N/A"}</p>
+//               {id === tournament?.organizerId?._id && (
+//                 <button className="btn btn-sm btn-warning mt-2" onClick={() => setShowResultForm(!showResultForm)}>
+//                   {showResultForm ? "Hide" : "Update Match Result"}
+//                 </button>
+//               )}
+//             </li>
+//           ))
+//         ) : (
+//           <li className="text-muted">No matches scheduled.</li>
+//         )}
+//       </ul>
 
-      {showResultForm && (
-        <div>
-          <h3 className="text-light mt-5 font-weight-bold">Update Match Result</h3>
-          <form className="fs-4 text-light">
-            <label>Match ID:</label>
-            <input type="text" className="form-control" value={result.matchId} onChange={(e) => setResult({ ...result, matchId: e.target.value })} />
+//       {showResultForm && (
+//         <div>
+//           <h3 className="text-light mt-5 font-weight-bold">Update Match Result</h3>
+//           <form className="fs-4 text-light">
+//             <label>Match ID:</label>
+//             <input type="text" className="form-control" value={result.matchId} onChange={(e) => setResult({ ...result, matchId: e.target.value })} />
 
-            <label>Winning Team:</label>
-            <input type="text" className="form-control" value={result.team_name} onChange={(e) => setResult({ ...result, team_name: e.target.value })} />
+//             <label>Winning Team:</label>
+//             <input type="text" className="form-control" value={result.team_name} onChange={(e) => setResult({ ...result, team_name: e.target.value })} />
 
-            <label>Score:</label>
-            <input type="number" className="form-control" value={result.score} onChange={(e) => setResult({ ...result, score: e.target.value })} />
+//             <label>Score:</label>
+//             <input type="number" className="form-control" value={result.score} onChange={(e) => setResult({ ...result, score: e.target.value })} />
 
-            <button type="submit" className="btn btn-success mt-3">Update Result</button>
-          </form>
-        </div>
-      )}
+//             <button type="submit" className="btn btn-success mt-3">Update Result</button>
+//           </form>
+//         </div>
+//       )}
 
-      <div className="text-center mt-5">
-        <button
-          className="btn btn-lg btn-warning fw-bold px-5 py-3"
-          onClick={() => {
-            if (!token) {
-              Swal.fire("Sign-in Required", "Please sign in to register for the tournament.", "warning");
-            } else if (id === tournament?.organizerId?._id) {
-              navigate(`/UpdateTournament/${tournament._id}`);
-            } else {
-              navigate(`/addTeam/${tournament._id}`);
-            }
-          }}
-        >
-          {id === tournament?.organizerId?._id ? "Update Tournament" : "Register"}
-        </button>
-      </div>
-    </div>
-  );
-};
+//       <div className="text-center mt-5">
+//         <button
+//           className="btn btn-lg btn-warning fw-bold px-5 py-3"
+//           onClick={() => {
+//             if (!token) {
+//               Swal.fire("Sign-in Required", "Please sign in to register for the tournament.", "warning");
+//             } else if (id === tournament?.organizerId?._id) {
+//               navigate(`/UpdateTournament/${tournament._id}`);
+//             } else {
+//               navigate(`/addTeam/${tournament._id}`);
+//             }
+//           }}
+//         >
+//           {id === tournament?.organizerId?._id ? "Update Tournament" : "Register"}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 
-export default TournamentById;
+// export default TournamentById;
 
 
 
@@ -274,3 +275,133 @@ export default TournamentById;
 // };
 
 // export default TournamentById;
+
+
+//==========================================================
+
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import url from "../../URL/url.js";
+import { useSelector } from "react-redux";
+import Swal from 'sweetalert2';
+
+const TournamentById = () => {
+  const params = useParams();
+  const { state } = useLocation();
+  const id = useSelector((state) => state.User.user._id);
+  const role = useSelector((state) => state.User.user.role);
+  const token = useSelector((state) => state.User?.token);
+
+  const [tournament, setTournament] = useState({});
+  const [result, setResult] = useState({ team_name: "", matchId: "", score: null });
+  const [status, setStatus] = useState({});
+  const [showResultForm, setShowResultForm] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getTournamentbyId();
+  }, []);
+
+  const getTournamentbyId = async () => {
+    try {
+      let response = await axios.get(url.tournament.TOURNAMENT_BY_ID + `/tournamentById/${params.id}`);
+      setTournament(response.data.data[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div style={{ background: "linear-gradient(90deg, #001F3F, #0074D9)", minHeight: "100vh", padding: "40px" }}>
+      <h1 className="text-center text-light display-2 font-weight-bold">{tournament.TournamentName}</h1>
+      <h4 className="text-center text-light display-6">Organized by: {tournament.organizerId?.name || "N/A"}</h4>
+
+      <div className="row mt-5">
+        <div className="col-md-6">
+          <h3 className="text-light font-weight-bold">Entry Fees & Dates</h3>
+          <p className="fs-4 text-light"><strong>Entry Fees:</strong> {tournament.entry_fees || "0"} Rs</p>
+          <p className="fs-4 text-light"><strong>Start Date:</strong> {tournament.startDate ? new Date(tournament.startDate).toLocaleDateString() : "N/A"}</p>
+          <p className="fs-4 text-light"><strong>End Date:</strong> {tournament.endDate ? new Date(tournament.endDate).toLocaleDateString() : "N/A"}</p>
+        </div>
+        
+        <div className="col-md-6">
+          <h3 className="text-light font-weight-bold">Teams Participating</h3>
+          <ul className="fs-4 text-light">
+            {tournament.teams?.length ? (
+              tournament.teams.map((team, index) => (
+                <li key={index}>
+                  <strong>Team {index + 1}: </strong>
+                  <Link to={`/Team/${team.teamId?._id}`} className="text-warning">
+                    {team.teamId?.teamName || "Unnamed Team"}
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <li className="text-muted">No teams registered yet.</li>
+            )}
+          </ul>
+        </div>
+      </div>
+
+      <h3 className="text-light mt-5 font-weight-bold">Tournament Schedule</h3>
+      <ul className="fs-4 text-light">
+        {tournament.schedule?.length ? (
+          tournament.schedule.map((match, index) => (
+            <li key={index} className="mb-4 p-4" style={{ background: "#00509E", borderRadius: "10px" }}>
+              <p><strong>Match {index + 1}:</strong> {match.matchId?.team1?.teamName || "N/A"} vs {match.matchId?.team2?.teamName || "N/A"}</p>
+              <p><strong>MatchId:</strong> {match?.matchId?.matchId || "N/A"}</p>
+              <p><strong>Venue:</strong> {match.matchId?.venue || "N/A"}</p>
+              <p><strong>Winner:</strong> {match.result?.winnerId?.teamName || "Not decided yet"}</p>
+              <p><strong>Score:</strong> {match.result?.score || "N/A"}</p>
+              {id === tournament?.organizerId?._id && (
+                <button className="btn btn-sm btn-warning mt-2" onClick={() => setShowResultForm(!showResultForm)}>
+                  {showResultForm ? "Hide" : "Update Match Result"}
+                </button>
+              )}
+            </li>
+          ))
+        ) : (
+          <li className="text-muted">No matches scheduled.</li>
+        )}
+      </ul>
+
+      {showResultForm && (
+        <div>
+          <h3 className="text-light mt-5 font-weight-bold">Update Match Result</h3>
+          <form className="fs-4 text-light">
+            <label>Match ID:</label>
+            <input type="text" className="form-control" value={result.matchId} onChange={(e) => setResult({ ...result, matchId: e.target.value })} />
+
+            <label>Winning Team:</label>
+            <input type="text" className="form-control" value={result.team_name} onChange={(e) => setResult({ ...result, team_name: e.target.value })} />
+
+            <label>Score:</label>
+            <input type="number" className="form-control" value={result.score} onChange={(e) => setResult({ ...result, score: e.target.value })} />
+
+            <button type="submit" className="btn btn-success mt-3">Update Result</button>
+          </form>
+        </div>
+      )}
+
+      <div className="text-center mt-5">
+        <button
+          className="btn btn-lg btn-warning fw-bold px-5 py-3"
+          onClick={() => {
+            if (!token) {
+              Swal.fire("Sign-in Required", "Please sign in to register for the tournament.", "warning");
+            } else if (id === tournament?.organizerId?._id) {
+              navigate(`/UpdateTournament/${tournament._id}`);
+            } else {
+              navigate(`/addTeam/${tournament._id}`);
+            }
+          }}
+        >
+          {id === tournament?.organizerId?._id ? "Update Tournament" : "Register"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default TournamentById;

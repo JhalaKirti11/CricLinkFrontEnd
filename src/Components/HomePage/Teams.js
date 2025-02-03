@@ -12,10 +12,18 @@ function Teams() {
   const token = useSelector((state) => state.User?.token);
 
   useEffect(() => {
+    let isMounted = true; // Prevents state updates on unmounted component
+
     axios
       .get("http://localhost:3001/Team/viewteam")
-      .then((response) => setTeams(response.data.Team))
+      .then((response) => {
+        if (isMounted) setTeams(response.data.Team);
+      })
       .catch((err) => console.error("Error fetching teams:", err));
+
+    return () => {
+      isMounted = false; // Cleanup function to prevent memory leaks
+    };
   }, []);
 
   const scrollLeft = () => {
@@ -29,22 +37,26 @@ function Teams() {
   return (
     <div className="teams-container text-center">
       <h2 className="text-center text-white">Teams</h2>
+    
+      <button className="btn btn-outline-light rounded-pill px-4 py-3" onClick={() => navigate("/TeamsPage")}>
+        View All
+      </button>
 
       <div className="scroll-wrapper d-flex justify-content-center align-items-center">
         <button className="scroll-button left" onClick={scrollLeft}>
           &lt;
         </button>
 
-        <div ref={containerRef} className="scroll-container d-flex justify-content-center">
+        <div ref={containerRef} className="team-scroll-container d-flex">
           {teams.map((team, index) => (
-            <div key={index} className="team-card text-center">
-              <h6 className="team-name">{team.teamName}</h6>
+            <div key={team._id || index} className="team-card text-center" style={{backgroundColor:"skyblue"}}>
+              <h3 className="team-name">{team.teamName}</h3>
               <p><strong>Captain:</strong> {team?.captainId?.name || "Unknown"}</p>
               <p><strong>Players:</strong> {team?.players?.length || 0}/11</p>
 
               <div className="team-actions d-flex justify-content-center">
                 <button
-                  className="btn btn-info btn-sm mx-1"
+                  className="btn btn-info btn-lg mx-1"
                   onClick={() => navigate(`/Team/${team._id}`)}
                 >
                   View

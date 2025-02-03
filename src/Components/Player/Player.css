@@ -119,7 +119,7 @@
 .btn-secondary:active,
 .btn-secondary.active,
 .open>.dropdown-toggle.btn-primary {
-    color: #fff;
+    color: #eee0e0;
     background-color: #727272;
     border-color: #474747;
     /*set the color you want here*/
@@ -138,3 +138,4 @@
 #filterArea ::-webkit-scrollbar {
     display: none;
 }
+
