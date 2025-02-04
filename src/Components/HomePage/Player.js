@@ -68,7 +68,7 @@ const PlayerList = ({ filteredData }) => {
                   <p style={{color:"black"}}>Experience : {player?.profile?.experience}</p>
                   <p>Nationality: India</p>
                   <button
-                    className="view-button btn-info"
+                    className="view-button"
                     onClick={() => navigate("/PlayerProfile", { state: { id: player._id } })}>
                     View More
                   </button>

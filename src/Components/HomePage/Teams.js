@@ -38,9 +38,9 @@ function Teams() {
     <div className="teams-container text-center">
       <h2 className="text-center text-white">Teams</h2>
     
-      <button className="btn btn-outline-light rounded-pill px-4 py-3" onClick={() => navigate("/TeamsPage")}>
+      {/* <button className="btn btn-outline-light rounded-pill px-4 py-3" onClick={() => navigate("/TeamsPage")}>
         View All
-      </button>
+      </button> */}
 
       <div className="scroll-wrapper d-flex justify-content-center align-items-center">
         <button className="scroll-button left" onClick={scrollLeft}>
@@ -49,7 +49,7 @@ function Teams() {
 
         <div ref={containerRef} className="team-scroll-container d-flex">
           {teams.map((team, index) => (
-            <div key={team._id || index} className="team-card text-center" style={{backgroundColor:"skyblue"}}>
+            <div key={team._id || index} className="team-card text-center" style={{background:"#6c7cb"}}>
               <h3 className="team-name">{team.teamName}</h3>
               <p><strong>Captain:</strong> {team?.captainId?.name || "Unknown"}</p>
               <p><strong>Players:</strong> {team?.players?.length || 0}/11</p>

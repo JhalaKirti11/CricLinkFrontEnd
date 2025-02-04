@@ -12,7 +12,7 @@ export default function UpdateProfileForm({ closeForm }) {
   const { id } = useParams();
   const navigate = useNavigate();
   console.log("Fetched ID from params:", id);
-  const [userRole, setUserRole] = useState('player');
+  const [userRole, setUserRole] = useState(userrole);
   const [formData, setFormData] = useState({
     skills: "",
     experience: "",
