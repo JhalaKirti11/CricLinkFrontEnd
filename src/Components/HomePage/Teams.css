@@ -19,8 +19,8 @@
   flex: 0 0 auto;
   min-width: 300px;
   min-height: 250px;
-  /* background: rgb(127, 203, 234); */
-  color: white;
+  background: #c6c7cb;
+  color: rgb(9, 96, 158);
   padding:20px;
 
   font-size: 20px;

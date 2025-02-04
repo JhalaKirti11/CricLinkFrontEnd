@@ -117,7 +117,7 @@ export default function Header({ setSearchedList }) {
                 <li className="nav-item">
                   <HashLink
                     className="nav-link"
-                    to="/#playerContainer"
+                    to="/Players"
                     style={{
                       display: "inline-block",
                       padding: "12px 24px",
