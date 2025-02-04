@@ -364,23 +364,7 @@ export default function Header({ setSearchedList }) {
             </button>
           </div>
 
-          <div className="col-md-4 col-6 offset-md-2 offset-1">
-            <input
-              type="text"
-              onChange={(e) => setSearchedList(e.target.value)}
-              placeholder="Search"
-              style={{
-                width: "400px",
-                height: "35px",
-                backgroundColor: "white",
-                border: "2px solid black",
-                color: "black",
-                borderRadius: "15px",
-              }}
-              className="form-control"
-            />
-          </div>
-
+          {/* g
           <div className="col-md-2 col-1 offset-2 offset-md-2 d-flex justify-content-center">
             {/* <i className="btn fa-solid fa-bell fa-xl" style={{ color: '#ffffff', marginTop: '10px' }}></i> */}
             <button
@@ -398,7 +382,6 @@ export default function Header({ setSearchedList }) {
               ></i>
             </button>
           </div>
-        </div>
       </nav>
     </>
   );
