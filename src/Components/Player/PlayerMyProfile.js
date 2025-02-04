@@ -399,7 +399,7 @@ export default function Header({ setSearchedList }) {
               <span className="navbar-toggler-icon"></span>
             </button>
           </div>
-          <div className="col-md-4 col-6 offset-md-2 offset-1">
+          {/* <div className="col-md-4 col-6 offset-md-2 offset-1">
             <input
               type="text"
               onChange={(e) => setSearchedList(e.target?.value)}
@@ -407,7 +407,7 @@ export default function Header({ setSearchedList }) {
               className="form-control rounded-pill text-light"
               style={{ backgroundColor: "white" }}
             />
-          </div >
+          </div > */}
           <div className="col-md-2 col-1 offset-2 offset-md-2 d-flex justify-content-center" >
             <div className="col-md-2 col-1 offset-2 offset-md-2 d-flex justify-content-center">
               <i
