@@ -54,8 +54,8 @@ export const TournamentCreation = () => {
   };
 
   return (
-    <div className="container my-5" style={{ maxWidth: "600px" }}>
-      <h2 className="text-center mb-4" style={{ color: "#0d6efd" }}>
+    <div className="container my-5" style={{ maxWidth: "800px", maxHeight:"800px"}}>
+      <h2 className="text-center mb-4" style={{ color: "#ffffff", textDecoration: "underline"}}>
         Create a New Tournament
       </h2>
       {successMessage && (
@@ -70,8 +70,9 @@ export const TournamentCreation = () => {
       )}
       <div
         className="p-4 rounded shadow"
-        style={{ backgroundColor: "#e7f3ff", border: "1px solid #bcd4f7" }}
+        style={{ backgroundColor: "white", border: "1px solid #bcd4f7" }}
       >
+        
         <form onSubmit={handleFormSubmit}>
           <div className="form-group mb-3">
             <label htmlFor="TournamentName" className="form-label" style={{ color: "#0d6efd" }}>
