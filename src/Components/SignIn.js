@@ -542,7 +542,7 @@ export default function SignIn() {
             <Link to="/signUp" className="text-danger">Register</Link>
           </p>
           <p className="text-center">OR</p>
-          <GoogleSign />
+          <GoogleDetails />
         </form>
       </div>
 

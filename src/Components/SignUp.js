@@ -870,8 +870,8 @@ export default function SignUpForm() {
             </select>
           </div>
           <button type="submit" className="signup-button">Sign Up</button>
-          <p className="text-center">OR</p>
-          <GoogleSign />
+          {/* <p className="text-center">OR</p>
+          <GoogleSign /> */}
           <button
             type="button"
             className="back-button"
