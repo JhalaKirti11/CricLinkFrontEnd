@@ -53,7 +53,7 @@ export const TeamRegister = () => {
                     </div>
                     <div className="mb-3">
                         <label className="form-label">All Player's Names</label>
-                        <textarea className="form-control" rows="3" required></textarea>
+                        <textarea className="form-control" rows="3"></textarea>
                     </div>
                     <div className="d-grid">
                         <button type="submit" className="btn btn-primary btn-lg">Register</button>

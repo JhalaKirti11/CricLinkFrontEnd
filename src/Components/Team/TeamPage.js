@@ -24,6 +24,13 @@ function TeamsPage() {
   const handleTeamClick = (id) => {
     navigate(`/Team/${id}`);
   };
+  const handleJoinClick = (team) => {
+    if (team.captainId?.name === user.name) {
+      alert("You are already part of this team as a captain.");
+    } else {
+      navigate(`/Team/req-to-join/${team._id}`);
+    }
+  };
 
   return (
     <div className="container mt-4 text-white" >

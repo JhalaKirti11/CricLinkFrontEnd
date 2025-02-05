@@ -29,7 +29,7 @@ export default function PlayerProfile() {
       console.log("--------------------------------------");
       // console.log(state.playerId);
       console.log("state.id : "+state.id);
-      const user = await axios.get(`http://localhost:3001/user/viewProfile/${state.id}`)
+      const user = await axios.get(`http://localhost:3001/user/profile/${state.id}`)
       console.log("USER.DATA : "+user.data)
       setPlayerData(user.data);
     }catch(error){
@@ -116,7 +116,8 @@ export default function PlayerProfile() {
             ) : !token ? (
               <button className="btn btn-primary mt-3"                    onClick={() => Swal.fire("Sign-in Required", "Please sign in to join.", "warning")}>Send Request</button>
             ):(
-              <button className="btn btn-primary mt-3" onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Send Request</button>
+              <button className="btn btn-primary" style={{ mt: 4 }}
+              onClick={() => navigate(`/Team/req-to-join/${state.id}`)}>Send Request</button>
             )}
   
           </div>

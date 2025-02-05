@@ -303,8 +303,8 @@ export default function PlayerList() {
       .then((response) => {
         console.log("response*", response);
 
-        setPlayerList(response.data.players);
-        setFilteredData(response.data.players);
+        setPlayerList(response.data.user);
+        setFilteredData(response.data.user);
       })
       .catch((err) => console.error("Error fetching players:", err));
   }, []);

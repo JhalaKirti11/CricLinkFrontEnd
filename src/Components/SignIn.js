@@ -536,7 +536,9 @@ export default function SignIn() {
               required
             />
           </div>
+          
           <button type="submit" className="signup-button">Sign In</button>
+          <Link to="/forgotpassword">Forgot Password?</Link>
           <p className="text-center mt-3">
             Don't have an account?{" "}
             <Link to="/signUp" className="text-danger">Register</Link>
