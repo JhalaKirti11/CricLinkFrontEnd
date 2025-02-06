@@ -61,13 +61,18 @@ function Teams() {
                 >
                   View
                 </button>
-                {!token && (
+                {!token ? (
                   <button
                     className="btn btn-success btn-sm mx-1"
                     onClick={() => Swal.fire("Sign-in Required", "Please sign in to join.", "warning")}
                   >
                     Join
                   </button>
+                ):(
+                  <button className="btn btn-success btn-sm"
+                  onClick={() => navigate(`/Team/req-to-join/${team._id}`)}>
+                  Join
+                </button>
                 )}
               </div>
             </div>

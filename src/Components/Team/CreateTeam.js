@@ -10,8 +10,8 @@ export const CreateTeam = () => {
     const [createTeam, setCreateTeam] = useState({ teamName: "", username: "" });
     const [successMessage, setSuccessMessage] = useState("");
     // const [errorMessage, setErrorMessage] = useState("");
-    const [showModal, setShowModal] = useState(false); 
-    const navigate = useNavigate(); 
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -25,8 +25,8 @@ export const CreateTeam = () => {
 
             setSuccessMessage(response.data.message);
             // setErrorMessage("");
-            setShowModal(true); 
-            
+            setShowModal(true);
+
 
         } catch (err) {
             if (err.response && err.response.data) {
@@ -41,18 +41,19 @@ export const CreateTeam = () => {
     };
 
     const handleModalClose = () => {
-        setShowModal(false); 
-            if(userrole==='player'){
+        setShowModal(false);
+        if (userrole === 'player') {
             navigate("/PlayerMyProfile");
-            }
-            else{
-              navigate("/OrganizerProfile");
-            }
+        }
+        else {
+            navigate("/OrganizerProfile");
+        }
     };
 
     return (
         <div className="container my-5 bg-info p-3">
             <h2>Create Team</h2>
+            <p>Connect, collaborate, and create – stronger together.</p>
             {/* {errorMessage && <p className="alert alert-danger">Unable to create team: {errorMessage}</p>} */}
             <form onSubmit={handleFormSubmit} method="post">
                 <div className="form-group">
@@ -84,45 +85,44 @@ export const CreateTeam = () => {
             </form>
 
             {/* Modal */}
-           {/* Modal */}
-{showModal && (
-    <div
-        className="modal show"
-        style={{
-            display: "block",
-            backgroundColor: "rgba(0, 0, 0, 0.5)", // Background overlay color
-        }}
-    >
-        <div className="modal-dialog">
-            <div
-                className="modal-content"
-                style={{
-                    backgroundColor: "#d4edda", // Success background color (light green)
-                    border: "1px solid #c3e6cb", // Border color (slightly darker green)
-                    color: "#155724", // Text color (dark green)
-                }}
-            >
-                <div className="modal-header">
-                    <h5 className="modal-title">Success</h5>
+            {showModal && (
+                <div
+                    className="modal show"
+                    style={{
+                        display: "block",
+                        backgroundColor: "rgba(0, 0, 0, 0.5)", // Background overlay color
+                    }}
+                >
+                    <div className="modal-dialog">
+                        <div
+                            className="modal-content"
+                            style={{
+                                backgroundColor: "#d4edda", // Success background color (light green)
+                                border: "1px solid rgb(113, 162, 204)", // Border color (slightly darker green)
+                                color: "#155724", // Text color (dark green)
+                            }}
+                        >
+                            <div className="modal-header">
+                                <h5 className="modal-title">Success</h5>
+                            </div>
+                            <div className="modal-body">
+                                <p>{successMessage}</p>
+                            </div>
+                            <div className="modal-footer">
+                                <button
+                                    type="button"
+                                    className="btn btn-success"
+                                    onClick={handleModalClose}
+                                >
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="modal-body">
-                    <p>{successMessage}</p>
-                </div>
-                <div className="modal-footer">
-                    <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={handleModalClose}
-                    >
-                        OK
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-)}
+            )}
 
-        
+
         </div>
     );
 };

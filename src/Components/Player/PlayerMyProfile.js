@@ -1,5 +1,3 @@
-// --------------------------------------------------------------------------
-
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { useSelector, useDispatch } from "react-redux";
@@ -433,7 +431,9 @@ export default function Header({ setSearchedList }) {
       </nav>
       <div style={{ background: 'linear-gradient(90deg, #002366, #ffffff)' }}>
         <Players filteredData={[]} />
-
+          {/* <div>
+            <button className="btn btn-secondary" onClick={()=>navigate(`/CreateGroup`)}>Group</button>          
+            </div> */}
         <Teams />
         <h3 className="text-center mb-4"
           style={{ fontFamily: "'Poppins', sans-serif", fontSize: "40px", color: "#ffffff", textDecoration: "underline", }}>Upcoming Events</h3>

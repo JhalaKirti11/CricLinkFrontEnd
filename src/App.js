@@ -45,6 +45,7 @@ import Teams from './Components/Team/team.js';
 import TeamDetail from './Components/Team/TeamDetails.js';
 import TeamsPage from './Components/Team/TeamPage.js';
 import PlayersDetail from './Components/Player/playersDetail.js';
+import {CreateGroup} from "./Components/GroupChat/CreateGroup.js";
 import './App.css'
 
 function App() {
@@ -93,8 +94,10 @@ function App() {
       <Route path="/TeamsPage" element={<TeamsPage/>}></Route>
       <Route path="/Team/:id" element={<TeamDetail/>} ></Route>
       <Route path="CreateTeam" element={<CreateTeam/>}></Route>
-    <Route path="/user/:id" element={<PlayersDetail/>} ></Route>
-   
+      <Route path="/user/:id" element={<PlayersDetail/>}></Route>
+
+    <Route path="/CreateGroup" element={<CreateGroup/>}></Route>
+    
     </Routes>
     </GoogleOAuthProvider>
     {/* <Example/> */}

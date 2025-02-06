@@ -380,23 +380,7 @@ export default function SignUpForm() {
     });
   };
 
-  // const handleSubmit = async (e) => {
-  //     e.preventDefault();
 
-  //     const updatedFormData = profile ?
-  //         { ...formData, name: profile.name, email: profile.email, password: profile.password, contactNumber: profile.contactNumber } :
-  //         { ...formData, image: 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1714302356~exp=1714302956~hmac=fd9dff0844f6c6523ff9dff44704f7708e403b18006e19a90d0c407bf9c61a2483' };
-
-  //     try {
-  //         console.log('formData', updatedFormData);
-  //         const response = await axios.post(url.player.signup, updatedFormData);
-  //         console.log(response);
-  //         handleAlert('success', 'Successfully signed up');
-  //     } catch (error) {
-  //         handleAlert('error', 'Signup failed');
-  //         console.log(error);
-  //     }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
