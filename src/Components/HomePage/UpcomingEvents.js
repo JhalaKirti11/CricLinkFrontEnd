@@ -49,7 +49,7 @@ function UpcomingEvent() {
                     <div
                         key={index}
                         className="card text-white shadow-lg rounded-3 d-inline-block p-4 mx-2 my-3"
-                        style={{ minWidth: "280px", maxWidth: "320px", fontSize: "1rem", transition: "transform 0.3s ease-in-out" }}
+                        style={{ minWidth: "280px", maxWidth: "320px", fontSize: "1rem", transition: "transform 0.3s ease-in-out", background: "#c6c7cb" }}
                         onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
                         onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
                     >

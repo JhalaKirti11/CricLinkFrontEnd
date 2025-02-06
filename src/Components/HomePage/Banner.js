@@ -27,13 +27,13 @@ export default function NewBanner() {
             topic: "THE GLORY",
             description: "It's not just a game; it's a battle of determination and skill.",
         },
-        {
-            imgSrc: "https://spin.axiomthemes.com/wp-content/uploads/2023/09/post3-copyright.jpg",
-            author: "CODE ELITERS",
-            title: "POWER PLAY",
-            topic: "GAME ON",
-            description: "The thrill of every run, every wicket, and every boundary!",
-        }
+        // {
+        //     imgSrc: "https://spin.axiomthemes.com/wp-content/uploads/2023/09/post3-copyright.jpg",
+        //     author: "CODE ELITERS",
+        //     title: "POWER PLAY",
+        //     topic: "GAME ON",
+        //     description: "The thrill of every run, every wicket, and every boundary!",
+        // }
     ];
 
     // Function to handle next slide

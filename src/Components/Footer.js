@@ -47,7 +47,7 @@ export default function Footer() {
             <div id="footer" className='mb-5 w-100   ' style={{ background: "linear-gradient(90deg,#002366,#ffffff)" }}>
                 <div id="container"></div>
                 <div id="footer-content">
-                    <img src='assets/logo.png' id='logo' alt='logo' />
+                    <img src='assets/highlights/cricklinkLogo.jpg' id='logo' alt='logo' />
                     <div id="footer-list">
                         <HashLink id='footer-list-content' className='text-decoration-none' to='/#'>HOME</HashLink>
                         <HashLink id='footer-list-content' className='text-decoration-none' to='/#AboutContainer'>ABOUT</HashLink>
