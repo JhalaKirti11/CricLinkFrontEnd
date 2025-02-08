@@ -114,9 +114,9 @@ export default function PlayerProfile() {
             {id === state.id ? (
               <button className="btn btn-primary mt-3" onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Update Profile</button>
             ) : !token ? (
-              <button className="btn btn-primary mt-3"                    onClick={() => Swal.fire("Sign-in Required", "Please sign in to join.", "warning")}>Send Request</button>
+              <button className="btn btn-primary mt-3" onClick={() => Swal.fire("Sign-in Required", "Please sign in to join.", "warning")}>Send Request</button>
             ):(
-              <button className="btn btn-primary mt-3" onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Send Request</button>
+              <button className="btn btn-primary mt-3" onClick={() => navigate(`/Team/req-to-join/${id}`)}>Send Request</button>
             )}
   
           </div>
