@@ -402,9 +402,9 @@ export default function OrganizerProfile({ setSearchedList }) {
         <div className="container text-center d-flex justify-content-around flex-wrap gap-5 mt-3" style={{ whiteSpace: "nowrap" }}>
           {tournament.slice(0, 4).map((tourna, index) => (
             <div
-              key={index} className="card bg-dark text-white shadow-sm rounded d-inline-block p-3 mx-2"
+              key={index} className="card text-black shadow-sm rounded d-inline-block p-3 mx-2"
 
-              style={{ minWidth: "250px", display: "inline-block" }}
+              style={{ minWidth: "250px", display: "inline-block", background: "#c6c7cb" }}
             >
               <h6 className="text-primary">{tourna.TournamentName}</h6>
               <p>
