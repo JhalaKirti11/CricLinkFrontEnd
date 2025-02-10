@@ -281,6 +281,7 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa"; // Search Icon
 import './Player.css';
 
@@ -295,6 +296,8 @@ export default function PlayerList() {
   // Add state for hover effect
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredButton, setHoveredButton] = useState(null);
+  const id = useSelector((state) => state.User.user._id);
+
 
   useEffect(() => {
     axios
@@ -500,6 +503,7 @@ export default function PlayerList() {
           <div ref={containerRef} className="scroll-container">
             {displayData?.map((player, index) => {
               return (
+                id !== player._id && (
                 <div key={player._id || index} className="player-card" >
                   <img src={player?.profile_photo ? player?.profile_photo : `/assets/highlights/userIcon.jpg`} alt="{player?.name}" className="player-image" />
                   <div className="player-info">
@@ -514,6 +518,7 @@ export default function PlayerList() {
                     </button>
                   </div>
                 </div>
+                )
               );
             })}
           </div>

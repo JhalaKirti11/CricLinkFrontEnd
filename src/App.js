@@ -42,6 +42,7 @@ import { jwtDecode } from "jwt-decode";
 //PlayerMatch
 // import RegistrationForm from './Components/Team/registerTeam.js';
 import Teams from './Components/Team/team.js';
+import MyTeam from "./Components/Player/PlayerTeam.js";
 import TeamDetail from './Components/Team/TeamDetails.js';
 import TeamsPage from './Components/Team/TeamPage.js';
 import PlayersDetail from './Components/Player/playersDetail.js';
@@ -64,6 +65,7 @@ function App() {
       {/* <Route path='/registerTeam' element={<RegistrationForm />} /> */}
 
       <Route path='/PlayerProfile' element={<PlayerProfile />} />
+      <Route path="/MyTeam" element={<MyTeam/>}/>
       <Route path='/Player' element={<Player />} />
       <Route path="/PlayerMyProfile" element={<PlayerMyProfile />} />
       <Route path="/UpdateProfileForm/:id" element={<UpdateProfileForm />} />

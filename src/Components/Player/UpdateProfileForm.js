@@ -185,7 +185,7 @@ export default function UpdateProfileForm({ closeForm }) {
                   Height
                 </label>
                 <input
-                  type="number"
+                  // type="number"
                   className="form-control"
                   placeholder="height"
                   name="height"
