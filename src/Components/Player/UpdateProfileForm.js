@@ -17,6 +17,7 @@ export default function UpdateProfileForm({ closeForm }) {
     skills: "",
     experience: "",
     location: "",
+    height:null,
     profile_photo: null,
   });
 
@@ -38,6 +39,7 @@ export default function UpdateProfileForm({ closeForm }) {
       form.append("skills", formData.skills);
     form.append("experience", formData.experience);
     form.append("location", formData.location);
+    form.append("height", formData.height);
     if (formData.profile_photo) {
       form.append("profile_photo", formData.profile_photo);
     }
@@ -167,6 +169,27 @@ export default function UpdateProfileForm({ closeForm }) {
                   placeholder="experience"
                   name="experience"
                   value={formData.experience}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label
+                  className="form-label"
+                  htmlFor="skills"
+                  style={{
+                    color: "blue",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Height
+                </label>
+                <input
+                  // type="number"
+                  className="form-control"
+                  placeholder="height"
+                  name="height"
+                  value={formData.height}
                   onChange={handleInputChange}
                 />
               </div>

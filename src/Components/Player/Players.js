@@ -39,7 +39,7 @@ export default ({ filteredData }) => {
               id="player"
             >
               <img
-                src={player.profile_photo}
+                src={player?.profile_photo ? player?.profile_photo : `/assets/highlights/userIcon.jpg`}
                 className="card-img-top"
                 style={{ height: "12rem" }}
                 alt="Player"

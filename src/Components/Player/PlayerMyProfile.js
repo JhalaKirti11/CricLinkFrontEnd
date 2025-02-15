@@ -224,6 +224,35 @@ function LeftSidebar() {
             </li>
 
             <li className="nav-item">
+              <HashLink className="nav-link text-dark" to="/myTeam"
+                style={{
+                  display: "inline-block",
+                  padding: "12px 24px",
+                  fontSize: "15px",
+                  fontWeight: "500",
+                  color: "black",
+                  border: "2px solid black",
+                  borderRadius: "10px",
+                  textTransform: "capatialize",
+                  textAlign: "center",
+                  margin: "10px 0",
+                  cursor: "pointer",
+                  width: "100%",
+                  textDecoration: "",
+                  letterSpacing: "1px",
+                  transition: "all 0.3s ease-in-out",
+                }}
+                onMouseOver={(e) =>
+                  (e.target.style.backgroundColor = "#007bff")
+                } // Hover effect
+                onMouseOut={(e) =>
+                  (e.target.style.backgroundColor = "transparent")
+                } >
+                My Team
+              </HashLink>
+            </li>
+
+            <li className="nav-item">
               <HashLink className="nav-link text-dark" to="/UpcomingTournamentsCards"
                 style={{
                   display: "inline-block",
