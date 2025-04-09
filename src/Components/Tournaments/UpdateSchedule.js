@@ -18,11 +18,8 @@ export function UpdateSchedule() {
         score: "",
         date: "",
     });
-    // const [responseMessage, setResponseMessage] = useState("");
-    // const [errorMessage, setErrorMessage] = useState("");
-
+    
     const navigate = useNavigate();
-
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
@@ -48,29 +45,10 @@ export function UpdateSchedule() {
     const matchAddToTournament = async (matchId) => {
         try {
             console.log("match id in adding to tournament : " + matchId);
-            // let matchObjId = formData.matchId;
-
-            // const findMatch = await axios.post(Api.ADD_MATCH + `/findMatches`,  {matchId} )
-            // console.log("match : " + findMatch.data +"  MY MESSAGE "+findMatch.data.message);
-            // const matchData = findMatch.data.data._id; 
-
-            // if (findMatch) {
-            //     // const matchObjId = findMatch.data._id;
-            //     console.log("gotMatchObjId : " + matchData);
-
                 const response = await axios.patch(url.tournament.TOURNAMENT_BY_ID + `/updateTournament/${params.id}`,  { matchId: matchId } );
                 console.log("response : " + response?.data);
                 alert(`match schedule successfully: ${response?.data}`);
 
-
-                // setResponseMessage(`match schedule : ${response?.data}`);
-                // if (response.data && response.data.insert) {
-                //     setResponseMessage(`Tournament Created: ${response.data?.insert?.TournamentName}`);
-                //     setErrorMessage(""); // Clear error messages
-                // } else {
-                //     setErrorMessage("Unexpected response format");
-                // }
-            
         } catch (error) {
             console.log(error);
             alert('Match Not scheduled');
@@ -80,10 +58,6 @@ export function UpdateSchedule() {
     return (
         <div style={{ padding: "20px", maxWidth: "800px", margin: "auto"}}>
             <h2>Update Tournament Schedule</h2>
-            {/* <div className="alert-success mb-4">
-                {responseMessage && <p className="alert alret-success">{responseMessage}</p>}
-                {errorMessage && <p className="alert alert-danger">Sorry! {errorMessage}</p>}
-            </div> */}
             <form onSubmit={handleSubmit}>
                 <div style={{ marginBottom: "10px" }}>
                     <label htmlFor="tournamentId">Match ID:</label>
