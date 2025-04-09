@@ -3,8 +3,6 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import url from "../../URL/url.js";
 
-
-
 export function UpdateSchedule() {
     const params = useParams();
     console.log("this is params.id : "+params.id);
