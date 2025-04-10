@@ -4,9 +4,7 @@ import url from "../../URL/url.js";
 import {useNavigate} from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 export const OrganizerTournament = () => {
-
 const navigate = useNavigate();
   const [tournament, setTourna] = useState([]);
   const id = useSelector((state) => state.User.user._id);
@@ -70,6 +68,5 @@ const navigate = useNavigate();
             ))}
           </div>
         </div>
-      );
-      
+      );    
 };
