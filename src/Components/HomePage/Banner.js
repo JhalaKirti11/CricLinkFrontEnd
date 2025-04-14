@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import './homePage.css'; // Ensure the CSS file is properly linked
-
+import './homePage.css';
 export default function NewBanner() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Define slider items
     const sliderItems = [
         {
             imgSrc: "https://img.freepik.com/premium-photo/cricket-match-action-shot-stadium-night-generative-ai_742418-6165.jpg?w=740",
