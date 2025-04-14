@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaSearch } from "react-icons/fa"; // Search Icon
+import { FaSearch } from "react-icons/fa";
 import './Player.css';
 
 export default function PlayerList() {
