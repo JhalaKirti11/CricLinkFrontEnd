@@ -6,20 +6,15 @@ import { ToastContainer, toast } from "react-toastify";
 import { Height } from '@mui/icons-material';
 import { backdropClasses } from '@mui/material';
 
-
 export const CreateGroup = () =>{
     const navigate = useNavigate();
-
     const player = useSelector((state) => state.User.user);
     const token = useSelector((state) => state.User.token);
     const id = useSelector((state) => state.User.user._id);
     const name = useSelector((state) => state.User.user.name);
-
     console.log("user Data : " + token + " " + id + " " + name);
-
     const [ group, setGroup] = useState({groupName:"", description:""});
     const [successMessage, setSuccessMessage] = useState("");
-
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setGroup({ ...group, [name]: value });
@@ -41,18 +36,12 @@ export const CreateGroup = () =>{
 
     const styles = {
         chat : {
-            // background: url('forest.jpeg'),
             backgroundSize: "cover",
             backgroundttachment: "fixed",
             width: "250px",
-            height: "350px"
-            
-          
+            height: "350px"         
       }
     }
-
-
-    
     return (
         <>
              <div className="container my-5 bg-info p-3">
@@ -89,18 +78,7 @@ export const CreateGroup = () =>{
                     Create
                 </button>
                 </form>
-
-                {/* {showModel && (
-                     <div
-                     className="modal show"
-                     style={{
-                         display: "block",
-                         backgroundColor: "rgba(0, 0, 0, 0.5)",
-                     }}>
-             </div>
-              )} */}
-              </div>
+            </div>
         </>
     )
-
 }
