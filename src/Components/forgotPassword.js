@@ -6,7 +6,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [step, setStep] = useState(1); // Step 1: Email input, Step 2: OTP Verification
+  const [step, setStep] = useState(1);
 
   const sendOTP = () => {
     if (!email) {
