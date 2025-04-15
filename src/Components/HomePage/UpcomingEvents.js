@@ -3,7 +3,7 @@ import axios from "axios";
 import url from "../../URL/url.js";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useSelector } from "react-redux"; // Redux se token access karne ke liye
+import { useSelector } from "react-redux";
 
 function UpcomingEvent() {
     const [tournament, setTournament] = useState([]);
@@ -69,8 +69,7 @@ function UpcomingEvent() {
                                 onClick={() => navigateToById(tourna._id)}>
                                 Details
                             </button>
-                            {/* Conditionally render Send Request button */}
-                            {!token ? ( // Agar token nahi hai toh ye button dikhaye
+                            {!token ? (
                                 <button
                                     className="btn btn-success btn-sm rounded-pill"
                                     onClick={() => {
@@ -81,7 +80,7 @@ function UpcomingEvent() {
                                 </button>
                             ) : role === "organizer" ? (
                                 null
-                            ) : ( // Agar token hai toh ye button dikhaye
+                            ) : (
                                 <button
                                     className="btn btn-success btn-sm rounded-pill"
                                     onClick={() => navigateToRegister(tourna._id)}
@@ -96,5 +95,4 @@ function UpcomingEvent() {
         </div>
     );
 }
-
 export default UpcomingEvent;
