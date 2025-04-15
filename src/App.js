@@ -8,11 +8,7 @@ import About from './Components/HomePage/About.js';
 import ContactUs from './Components/HomePage/ContactUs.js';
 import ForgotPassword from './Components/forgotPassword';
 import Player from './Components/HomePage/Player.js';
-
 import {CreateTeam} from './Components/Team/CreateTeam';
-
-
-
 import PlayerProfile from './Components/Player/PlayerProfile.js';
 import OrganizerProfile from './Components/Player/OrganizerProfile.js';
 import OrganizerMyProfile from './Components/Player/OrganizerMyProfile';
@@ -23,10 +19,6 @@ import WithoutTeam from './Components/Player/WithoutTeam';
 
 import {PlayerNotifications} from "./Components/Player/PlayerNotifications.js";
 import SendRequest from "./Components/Team/SendRequest"
-// import {ReqCaptainToPlayer} from "./Components/Team/ReqCaptainToPlayer";
-
-
-// import Tournament from './Components/Tournaments/Tournament.js';
 import {PlayerMatch} from './Components/Player/PlayerMatch.js';
 import {UpdateSchedule} from './Components/Tournaments/UpdateSchedule.js';
 import ParticularTournament from "./Components/Tournaments/ParticularTournament.js";
@@ -39,8 +31,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
-//PlayerMatch
-// import RegistrationForm from './Components/Team/registerTeam.js';
 import Teams from './Components/Team/team.js';
 import MyTeam from "./Components/Player/PlayerTeam.js";
 import TeamDetail from './Components/Team/TeamDetails.js';
@@ -60,10 +50,6 @@ function App() {
       <Route path='/signIn' element={<SignIn />} />
       <Route path='/signUp' element={<SignUp />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
-      {/* <Route path='/teams' element={<Teams />} /> */}
-      {/* <Route path='/teamDetails' element={<TeamDetail />} /> */}
-      {/* <Route path='/registerTeam' element={<RegistrationForm />} /> */}
-
       <Route path='/PlayerProfile' element={<PlayerProfile />} />
       <Route path="/MyTeam" element={<MyTeam/>}/>
       <Route path='/Player' element={<Player />} />
@@ -73,13 +59,8 @@ function App() {
       <Route path="/OrganizerMyProfile" element={<OrganizerMyProfile/>}/>
       <Route path="/Players" element={<Players/>}/>
       <Route path="/WithoutTeam" element={<WithoutTeam/>}/>
-
-      {/* <Route path="/AllNotifications" element={<PlayerNotifications/>}/> */}
       <Route path="/AllNotifications" element={<PlayerNotifications/>}/>
-
       <Route path="/Team/req-to-join/:id" element={<SendRequest/>} ></Route>
-      {/* <Route path="/reqCaptainToPlayer/:id" element={<ReqCaptainToPlayer/>}/> */}
-
       <Route path="/PlayerMatch" element={<PlayerMatch/>} />
       <Route path='/updateTournament/:id' element={<UpdateSchedule />} />
       <Route path="/tournamentById/:id" element={<ParticularTournament />} />
@@ -88,22 +69,15 @@ function App() {
       <Route path="/createTournamentReq" element={<TournamentCreation/>}/>
       <Route path="/OrganizerTournament" element={<OrganizerTournament/>}/>
       <Route path="/scheduleResult/:matchId" element={<UpdateResult/>}/>
-
-
       <Route path='/About' element={<About />} /> //teamDetails
       <Route path='/ContactUs' element={<ContactUs />} />
-
       <Route path="/TeamsPage" element={<TeamsPage/>}></Route>
       <Route path="/Team/:id" element={<TeamDetail/>} ></Route>
       <Route path="CreateTeam" element={<CreateTeam/>}></Route>
       <Route path="/user/:id" element={<PlayersDetail/>}></Route>
-
-    <Route path="/CreateGroup" element={<CreateGroup/>}></Route>
-    
+      <Route path="/CreateGroup" element={<CreateGroup/>}></Route>
     </Routes>
     </GoogleOAuthProvider>
-    {/* <Example/> */}
   </>
 }
-
 export default App;
