@@ -27,8 +27,6 @@ export default function Header({ setSearchedList }) {
       <nav
         className="navbar navbar-dark sticky-top p-3"
         style={{ background: "linear-gradient(90deg, #001a4d, #002366)"}}>
-        {/* <img src="./assets/logo.png" margin={"1000px"} height={"30px"} width={"200px"}alt="logo"></img> */}
-        {/* <nav className="navbar navbar-dark sticky-top p-3 pb-5" style={{ backdropFilter: 'blur(5px)' }}> */}
         <div className="container-fluid ">
           <div
             className="offcanvas offcanvas-start p-5 text-bg-light"
@@ -50,7 +48,6 @@ export default function Header({ setSearchedList }) {
             </div>
             <div className="offcanvas-body ps-5">
               <ul className="navbar-nav justify-content-start flex-grow-1 pe-3">
-                {/* Sidebar content here */}
                 <li className="nav-item">
                   <HashLink
                     className="nav-link active"
@@ -202,7 +199,7 @@ export default function Header({ setSearchedList }) {
                     } // Hover effect
                     onMouseOut={(e) =>
                       (e.target.style.backgroundColor = "transparent")
-                    } // Reset color
+                    }
                   >
                     Teams
                   </HashLink>
@@ -242,7 +239,6 @@ export default function Header({ setSearchedList }) {
             </div>
           </div>
 
-          {/* Right sidebar */}
           <div
             className="offcanvas offcanvas-end pt-5"
             tabIndex="-1"
@@ -250,9 +246,9 @@ export default function Header({ setSearchedList }) {
             aria-labelledby="rightSidebarLabel"
             style={{
               width: "25vw",
-              height: "50vh", // Adjust the height
-              backgroundColor: "rgba(255, 255, 255, 0.7)", // White color with reduced opacity
-              marginTop: "10vh", // Adjust this value to control the space from the top
+              height: "50vh",
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              marginTop: "10vh",
             }}
           >
             <button
@@ -363,11 +359,7 @@ export default function Header({ setSearchedList }) {
               <span className="navbar-toggler-icon"></span>
             </button>
           </div>
-
-          {/* g
-          <div className="col-md-2 col-1 offset-2 offset-md-2 d-flex justify-content-center">
-            {/* <i className="btn fa-solid fa-bell fa-xl" style={{ color: '#ffffff', marginTop: '10px' }}></i> */}
-            <button
+          <button
               className="bg-transparent p-2 rounded-circle"
               type="button"
               data-bs-toggle="offcanvas"
