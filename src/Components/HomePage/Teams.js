@@ -12,7 +12,7 @@ function Teams() {
   const token = useSelector((state) => state.User?.token);
 
   useEffect(() => {
-    let isMounted = true; // Prevents state updates on unmounted component
+    let isMounted = true;
 
     axios
       .get("http://localhost:3001/Team/viewteam")
@@ -22,7 +22,7 @@ function Teams() {
       .catch((err) => console.error("Error fetching teams:", err));
 
     return () => {
-      isMounted = false; // Cleanup function to prevent memory leaks
+      isMounted = false;
     };
   }, []);
 
@@ -37,11 +37,6 @@ function Teams() {
   return (
     <div className="teams-container text-center">
       <h2 className="text-center text-white">Teams</h2>
-    
-      {/* <button className="btn btn-outline-light rounded-pill px-4 py-3" onClick={() => navigate("/TeamsPage")}>
-        View All
-      </button> */}
-
       <div className="scroll-wrapper d-flex justify-content-center align-items-center">
         <button className="scroll-button left" onClick={scrollLeft}>
           &lt;
@@ -78,7 +73,6 @@ function Teams() {
             </div>
           ))}
         </div>
-
         <button className="scroll-button right" onClick={scrollRight}>
           &gt;
         </button>
@@ -86,5 +80,4 @@ function Teams() {
     </div>
   );
 }
-
 export default Teams;
