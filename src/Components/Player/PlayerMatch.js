@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,23 +8,16 @@ import Swal from "sweetalert2";
 export function PlayerMatch() {
     const [matchData, setMatchData] = useState([]);
     const [teamData, setTeamData] = useState({});
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const player = useSelector((state) => state.User.user);
-
     const token = useSelector((state) => state.User.token);
     const id = useSelector((state) => state.User.user._id);
     const name = useSelector((state) => state.User.user.name);
-
     console.log("user Data : " + token + " " + id + " " + name);
-
-
     useEffect(() => {
         userMatch();
     }, []);
-
-
     const userMatch = async () => {
         try {
             const team = await axios.post(`http://localhost:3001/Team/getTeamByUser`, { id: id })
@@ -34,28 +26,24 @@ export function PlayerMatch() {
                 setTeamData(teamDataArray[0]);
                 const teamId = teamDataArray[0]._id;
                 console.log("teamId : ", teamId);
-
-                // Now fetch matches based on teamId
                 const match = await axios.post(`http://localhost:3001/match/getMatchesByTeam`, { teamId });
                 console.log("match data : ", match.data?.data);
                 setMatchData(match.data?.data);
             } else {
                 console.log("No team found for this user.");
             }
-
-
         } catch (error) {
             console.error("Error fetching player's match:", error);
             Swal.fire("Error", "Failed to load player's match.", "error");
         }
     }
+    
     return (
         <>
             <div className="container mt-5">
                 <h3 className="text-center mb-4" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "40px", color: "#ffffff", textDecoration: "underline" }}>
                     Match Details
                 </h3>
-    
                 {matchData.length > 0 ? (
                     <div className="table-responsive">
                         <table className="table table-hover table-bordered text-center" style={{ backgroundColor: "#fff", borderRadius: "10px", overflow: "hidden" }}>
@@ -93,6 +81,4 @@ export function PlayerMatch() {
             </div>
         </>
     );
-    
-
 }
