@@ -33,7 +33,7 @@ export const PlayerNotifications = () => {
             const response = await axios.get("http://localhost:3001/Team/viewteam"); 
             console.log("response",response.data)
             setTeams(response.data.Team);
-            console.log("iiiiiiiiiiiiiiiiiiiii",response.data.Team)
+            console.log(response.data.Team)
         } catch (error) {
             console.log("Error fetching teams: ", error);
         }
@@ -59,7 +59,6 @@ export const PlayerNotifications = () => {
                 setMessage("Request accepted");
                 alert("Request accepted!");
 
-                // Update notification status for both captain and player
                 setNotifications((prevNotifications) => 
                     prevNotifications?.map((notice) => {
                         if (notice?.senderId?._id === senderId && notice?.receiverId?._id === userId) {
@@ -89,13 +88,11 @@ export const PlayerNotifications = () => {
                 playerId,
                 teamId,
             });
-            console.log("//////////////////////",teamId)
+            console.log(teamId)
 
             if (response.status === 200) {
                 setMessage("Request rejected");
                 alert("Request rejected!");
-
-                // Update notification status for both captain and player
                 setNotifications((prevNotifications) => 
                     prevNotifications?.map((notice) => {
                         if (notice?.senderId?._id === senderId && notice?.receiverId?._id === userId) {
@@ -109,7 +106,6 @@ export const PlayerNotifications = () => {
             console.log("Error in rejecting request: ", error);
         }
     };
-
 
     return (
         <div className="container mt-5">
@@ -129,11 +125,8 @@ export const PlayerNotifications = () => {
                 ) : (
                     <div className="row">
                         {notifications?.map((notice, index) => {
-                            const isReceiver = notice?.receiverId?._id === userId; // Check if user is the receiver
-
-                            // Identify teamId based on notification context
+                            const isReceiver = notice?.receiverId?._id === userId;
                             const teamId = notice?.teamId || (notice?.senderId?.teamId || notice?.receiverId?.teamId);
-
                             return (
                                 <div key={notice?._id || notice?.senderId?._id} className="col-md-4 mb-4">
                                     <div className="card shadow-sm" style={{ backgroundColor: "white", borderLeft: "4px solid #007bff" }}>
@@ -144,7 +137,6 @@ export const PlayerNotifications = () => {
                                             <p className="card-text"><strong>Message:</strong> {notice?.message}</p>
                                             <p className="card-text text-muted"><strong>Status:</strong> {notice?.status}</p>
 
-                                            {/* Display accept/reject buttons only if user is the receiver */}
                                             {notice?.status === "pending" && isReceiver && (
                                                 <div className="d-flex justify-content-end">
                                                     <button
@@ -172,7 +164,3 @@ export const PlayerNotifications = () => {
         </div>
     );
 };
-
-
-
-//PlayerNotifications.js
