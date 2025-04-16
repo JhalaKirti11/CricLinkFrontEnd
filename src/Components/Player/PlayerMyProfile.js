@@ -2,27 +2,16 @@ import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-
 import UpcomingEvent from "../HomePage/UpcomingEvents";
-import Players from "../HomePage/Player"; // Corrected import
-
+import Players from "../HomePage/Player";
 import Teams from "../HomePage/Teams";
-
 import { signOut } from "../../redux-config/UserSlice";
-
-
 
 function LeftSidebar() {
   const [selectedPlayerId, setSelectedPlayerId] = useState({});
-
-  // *****************************************
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const player = useSelector((state) => state.User.user);
-
-  // ******************************************
-
   const token = useSelector((state) => state.User.token);
   const name = useSelector((state) => state.User.user.name);
   const contact = useSelector((state) => state.User.user.contact);
@@ -42,25 +31,20 @@ function LeftSidebar() {
   console.log(email);
   console.log(player);
   console.log(role)
-
   console.log(experience);
   console.log(skill);
   console.log(location);
-
   console.log(profile_photo);
   console.log("=================<<<<<<<<<>>>>>>==================");
 
   return (
     <>
-
       <div
         className="offcanvas offcanvas-start p-5 text-dark "
         tabIndex="-1"
         id="leftSidebar"
         aria-labelledby="leftSidebarLabel"
         style={{ width: "350px" }}
-
-      // style={{ backgroundColor: "white", color: "black" }}
       >
         <button
           type="button"
@@ -69,19 +53,6 @@ function LeftSidebar() {
           aria-label="Close"
         ></button>
         <div className="offcanvas-header ps-5" >
-          {/* <img src="assets/logo.png" id="logo" alt="logo" /> */}
-          {/* ============================================================     */}
-          {/* <a href="https://your-link-here.com">
-
-{profile_photo ? (
-        <img src={profile_photo} id="logo" alt="User Profile" />
-    ) : (
-        <img src="assets/logo.png" id="logo" alt="Default Logo" />
-       
-    )
-}
-</a> */}
-
           {profile_photo ? (
             <img
               src={profile_photo}
@@ -94,7 +65,7 @@ function LeftSidebar() {
                 cursor: "pointer",
               }}
               onClick={() => {
-                console.log("Navigating to PlayerProfile with player:", player); // Log the player data
+                console.log("Navigating to PlayerProfile with player:", player);
                 setSelectedPlayerId(id);
                 navigate("/PlayerProfile", { state: { id } });
               }}
@@ -111,31 +82,23 @@ function LeftSidebar() {
                 cursor: "pointer",
               }}
               onClick={() => {
-                console.log("Navigating to PlayerProfile with player:", player); // Log the player data
+                console.log("Navigating to PlayerProfile with player:", player);
                 setSelectedPlayerId(id);
                 navigate("/PlayerProfile", { state: { id } });
               }}
             />
           )}
-
-          {/* =============================================================== */}
-
-
         </div>
         <div className="offcanvas-body ps-5 ">
           <h4 className="mt-3 text-dark">{name ? name : "Guest User"}</h4>
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 " >
             <li className="nav-item" >
-              {/* <HashLink className="nav-link active" to="/#banner">
-              Home
-            </HashLink> */}
-
               <button
                 className="nav-link active text-dark"
                 onClick={() => {
-                  console.log("Navigating to PlayerProfile with player ID:", id); // Log the player data
-                  setSelectedPlayerId(id); // Update state or perform any logic
-                  navigate("/PlayerProfile", { state: { id } }); // Navigate with state
+                  console.log("Navigating to PlayerProfile with player ID:", id);
+                  setSelectedPlayerId(id);
+                  navigate("/PlayerProfile", { state: { id } });
                 }}
 
                 style={{
@@ -185,7 +148,7 @@ function LeftSidebar() {
                 }}
                 onMouseOver={(e) =>
                   (e.target.style.backgroundColor = "#007bff")
-                } // Hover effect
+                }
                 onMouseOut={(e) =>
                   (e.target.style.backgroundColor = "transparent")
                 }
@@ -193,7 +156,6 @@ function LeftSidebar() {
                 About
               </HashLink>
             </li>
-
             <li className="nav-item">
               <HashLink className="nav-link text-dark" to="/Players"
                 style={{
@@ -215,7 +177,7 @@ function LeftSidebar() {
                 }}
                 onMouseOver={(e) =>
                   (e.target.style.backgroundColor = "#007bff")
-                } // Hover effect
+                }
                 onMouseOut={(e) =>
                   (e.target.style.backgroundColor = "transparent")
                 } >
@@ -244,14 +206,13 @@ function LeftSidebar() {
                 }}
                 onMouseOver={(e) =>
                   (e.target.style.backgroundColor = "#007bff")
-                } // Hover effect
+                }
                 onMouseOut={(e) =>
                   (e.target.style.backgroundColor = "transparent")
                 } >
                 My Team
               </HashLink>
             </li>
-
             <li className="nav-item">
               <HashLink className="nav-link text-dark" to="/UpcomingTournamentsCards"
                 style={{
@@ -273,7 +234,7 @@ function LeftSidebar() {
                 }}
                 onMouseOver={(e) =>
                   (e.target.style.backgroundColor = "#007bff")
-                } // Hover effect
+                }
                 onMouseOut={(e) =>
                   (e.target.style.backgroundColor = "transparent")
                 } >
@@ -301,7 +262,7 @@ function LeftSidebar() {
                 }}
                 onMouseOver={(e) =>
                   (e.target.style.backgroundColor = "#007bff")
-                } // Hover effect
+                }
                 onMouseOut={(e) =>
                   (e.target.style.backgroundColor = "transparent")
                 } >
@@ -329,7 +290,7 @@ function LeftSidebar() {
                 }}
                 onMouseOver={(e) =>
                   (e.target.style.backgroundColor = "#007bff")
-                } // Hover effect
+                }
                 onMouseOut={(e) =>
                   (e.target.style.backgroundColor = "transparent")
                 } >
@@ -357,7 +318,7 @@ function LeftSidebar() {
                 }}
                 onMouseOver={(e) =>
                   (e.target.style.backgroundColor = "#007bff")
-                } // Hover effect
+                }
                 onMouseOut={(e) =>
                   (e.target.style.backgroundColor = "transparent")
                 } >
@@ -366,56 +327,39 @@ function LeftSidebar() {
             </li>
           </ul>
         </div>
-
         <div className="d-flex justify-content-center align-items-center mt-auto">
           <button
             className="btn btn-danger w-75 mt-4"
             onClick={() => {
               console.log("Logging out...");
-              dispatch(signOut()); // Clear Redux state
-              navigate("/"); // Navigate to home page
+              dispatch(signOut());
+              navigate("/");
             }}
           >
             Logout
           </button>
         </div>
       </div>
-
-
     </>
   );
 }
-
-//==============right side bar=====================
-
-//===============================================
 export default function Header({ setSearchedList }) {
   let navigate = useNavigate();
-
   const [selectedPlayerId, setSelectedPlayerId] = useState({});
   const id = useSelector((state) => state.User.user._id);
-
-  //=============handle file in notepad=====================
-
-  //==================================================
-
   return (
     <>
       <nav
         className="navbar navbar-dark sticky-top p-3"
         style={{
-          background: "linear-gradient(90deg, #001a4d, #002366)", // Smooth dark blue gradient
-          color: "#ffffff", // White text for contrast
-          borderBottom: "2px solid #ffffff", // White border for separation
+          background: "linear-gradient(90deg, #001a4d, #002366)",
+          color: "#ffffff",
+          borderBottom: "2px solid #ffffff",
           height: "70px",
         }}
       >
         <div className="container-fluid" >
           <LeftSidebar />
-          {/* =========================================================== */}
-
-          {/* ================================================================ */}
-          {/* <RightSidebar navigate={navigate} /> */}
           <div className="col-md-1 col-2">
             <button
               className="navbar-toggler"
@@ -426,22 +370,12 @@ export default function Header({ setSearchedList }) {
               <span className="navbar-toggler-icon"></span>
             </button>
           </div>
-          {/* <div className="col-md-4 col-6 offset-md-2 offset-1">
-            <input
-              type="text"
-              onChange={(e) => setSearchedList(e.target?.value)}
-              placeholder="Search"
-              className="form-control rounded-pill text-light"
-              style={{ backgroundColor: "white" }}
-            />
-          </div > */}
           <div className="col-md-2 col-1 offset-2 offset-md-2 d-flex justify-content-center" >
             <div className="col-md-2 col-1 offset-2 offset-md-2 d-flex justify-content-center">
               <i
                 className="btn fa-solid fa-bell fa-xl"
                 style={{ color: "#ffffff", marginTop: "10px" }}
                 onClick={() => navigate("/AllNotifications")}>
-
               </i>
               <button className="btn btn-primary" style={{ marginRight: '20px' }}
                 onClick={() => navigate(`/UpdateProfileForm/${id}`)}
@@ -460,9 +394,6 @@ export default function Header({ setSearchedList }) {
       </nav>
       <div style={{ background: 'linear-gradient(90deg, #002366, #ffffff)' }}>
         <Players filteredData={[]} />
-          {/* <div>
-            <button className="btn btn-secondary" onClick={()=>navigate(`/CreateGroup`)}>Group</button>          
-            </div> */}
         <Teams />
         <h3 className="text-center mb-4"
           style={{ fontFamily: "'Poppins', sans-serif", fontSize: "40px", color: "#ffffff", textDecoration: "underline", }}>Upcoming Events</h3>
@@ -471,5 +402,3 @@ export default function Header({ setSearchedList }) {
     </>
   );
 }
-
-// // -------------------------------------------------------------------------
