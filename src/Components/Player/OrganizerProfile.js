@@ -5,26 +5,19 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { signOut } from "../../redux-config/UserSlice";
-
 import url from "../../URL/url.js";
-// import { TournamentCreation } from "../Tournaments/CreateTournament";
 import UpcomingEvent from "../HomePage/UpcomingEvents"
 
 function LeftSidebar() {
   const [selectedPlayerId, setSelectedPlayerId] = useState({});
-
   const navigate = useNavigate();
   const profile_photo = useSelector((state) => state.User.user.profile_photo);
   const id = useSelector((state) => state.User.user._id);
   const name = useSelector((state) => state.User.user.name);
-
   const dispatch = useDispatch();
   const player = useSelector((state) => state.User.user);
-
- 
    return (
      <>
- 
        <div
          className="offcanvas offcanvas-start p-5 text-dark "
          tabIndex="-1"
@@ -51,7 +44,7 @@ function LeftSidebar() {
                  cursor: "pointer",
                }}
                onClick={() => {
-                 console.log("Navigating to PlayerProfile with player:", player); // Log the player data
+                 console.log("Navigating to PlayerProfile with player:", player);
                  setSelectedPlayerId(id);
                  navigate("/OrganizerMyProfile", { state: { id } });
                }}
@@ -68,33 +61,24 @@ function LeftSidebar() {
                  cursor: "pointer",
                }}
                onClick={() => {
-                 console.log("Navigating to PlayerProfile with player:", player); // Log the player data
+                 console.log("Navigating to PlayerProfile with player:", player);
                  setSelectedPlayerId(id);
                  navigate("/OrganizerMyProfile", { state: { id } });
                }}
              />
            )}
- 
-           {/* =============================================================== */}
- 
- 
          </div>
          <div className="offcanvas-body ps-5 ">
            <h4 className="mt-3 text-dark">{name ? name : "Guest User"}</h4>
            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 " >
              <li className="nav-item" >
-               {/* <HashLink className="nav-link active" to="/#banner">
-               Home
-             </HashLink> */}
- 
                <button
                  className="nav-link active text-dark"
                  onClick={() => {
-                   console.log("Navigating to OrganizerMyProfile with player ID:", id); // Log the player data
-                   setSelectedPlayerId(id); // Update state or perform any logic
-                   navigate("/OrganizerMyProfile", { state: { id } }); // Navigate with state
+                   console.log("Navigating to OrganizerMyProfile with player ID:", id);
+                   setSelectedPlayerId(id);
+                   navigate("/OrganizerMyProfile", { state: { id } });
                  }}
- 
                  style={{
                    display: "inline-block",
                    padding: "12px 24px",
@@ -142,7 +126,7 @@ function LeftSidebar() {
                  }}
                  onMouseOver={(e) =>
                    (e.target.style.backgroundColor = "#007bff")
-                 } // Hover effect
+                 }
                  onMouseOut={(e) =>
                    (e.target.style.backgroundColor = "transparent")
                  }
@@ -150,7 +134,6 @@ function LeftSidebar() {
                  About
                </HashLink>
              </li>
- 
              <li className="nav-item">
                <HashLink className="nav-link text-dark" to="/Player"
                  style={{
@@ -179,7 +162,6 @@ function LeftSidebar() {
                  Players
                </HashLink>
              </li>
- 
              <li className="nav-item">
                <HashLink className="nav-link text-dark" to="/UpcomingTournamentsCards"
                  style={{
@@ -229,7 +211,7 @@ function LeftSidebar() {
                  }}
                  onMouseOver={(e) =>
                    (e.target.style.backgroundColor = "#007bff")
-                 } // Hover effect
+                 }
                  onMouseOut={(e) =>
                    (e.target.style.backgroundColor = "transparent")
                  } >
@@ -257,7 +239,7 @@ function LeftSidebar() {
                  }}
                  onMouseOver={(e) =>
                    (e.target.style.backgroundColor = "#007bff")
-                 } // Hover effect
+                 }
                  onMouseOut={(e) =>
                    (e.target.style.backgroundColor = "transparent")
                  } >
@@ -285,7 +267,7 @@ function LeftSidebar() {
                  }}
                  onMouseOver={(e) =>
                    (e.target.style.backgroundColor = "#007bff")
-                 } // Hover effect
+                 }
                  onMouseOut={(e) =>
                    (e.target.style.backgroundColor = "transparent")
                  } >
@@ -294,22 +276,19 @@ function LeftSidebar() {
              </li>
            </ul>
          </div>
- 
          <div className="d-flex justify-content-center align-items-center mt-auto">
            <button
              className="btn btn-danger w-75 mt-4"
              onClick={() => {
                console.log("Logging out...");
-               dispatch(signOut()); // Clear Redux state
-               navigate("/"); // Navigate to home page
+               dispatch(signOut());
+               navigate("/");
              }}
            >
              Logout
            </button>
          </div>
        </div>
- 
- 
      </>
    );
 }
@@ -318,12 +297,9 @@ export default function OrganizerProfile({ setSearchedList }) {
   const navigate = useNavigate();
   const [tournament, setTourna] = useState([]);
   const id = useSelector((state) => state.User.user._id);
-
   useEffect(() => {
     getTournamentbyId();
   }, []);
-
-
   const getTournamentbyId = async () => {
     try {
       console.log("organizer id : state.id : " + id)
@@ -335,16 +311,12 @@ export default function OrganizerProfile({ setSearchedList }) {
       console.log(error);
     }
   }
-
   const viewTourna = (id) => {
     navigate(`/tournamentById/${id}`)
   }
-
   const updateSchedule = (id) => {
     navigate(`/updateTournament/${id}`);
   }
-
-
   return (
     <>
       <nav
@@ -363,15 +335,6 @@ export default function OrganizerProfile({ setSearchedList }) {
               <span className="navbar-toggler-icon"></span>
             </button>
           </div>
-          {/* <div className="col-md-4 col-6 offset-md-2 offset-1">
-            <input
-              type="text"
-              onChange={(e) => setSearchedList(e.target.value)}
-              placeholder="Search"
-              className="form-control rounded-pill text-light"
-              style={{ backgroundColor: "#272727" }}
-            />
-          </div> */}
           <div className="col-md-2 col-1 offset-2 offset-md-2 d-flex justify-content-center">
             <button className="btn btn-primary" style={{ marginRight: '30px' }}
               onClick={() => navigate(`/UpdateProfileForm/${id}`)}>
@@ -387,7 +350,6 @@ export default function OrganizerProfile({ setSearchedList }) {
           </div>
         </div>
       </nav>
-      {/* Pass the organizer ID to the TournamentById component */}
       <div className="container mt-4 text-white">
         <h1 className="text-center mb-4 text-light">Your Events</h1>
         <div className="d-flex justify-content-end mb-3">
@@ -398,12 +360,10 @@ export default function OrganizerProfile({ setSearchedList }) {
             View All
           </button>
         </div>
-        {/* Horizontal Scrollable Section */}
         <div className="container text-center d-flex justify-content-around flex-wrap gap-5 mt-3" style={{ whiteSpace: "nowrap" }}>
           {tournament.slice(0, 4).map((tourna, index) => (
             <div
               key={index} className="card text-black shadow-sm rounded d-inline-block p-3 mx-2"
-
               style={{ minWidth: "250px", display: "inline-block", background: "#c6c7cb" }}
             >
               <h6 className="text-primary">{tourna.TournamentName}</h6>
@@ -437,7 +397,6 @@ export default function OrganizerProfile({ setSearchedList }) {
         <h1 className="text-center mb-4 text-light">Tournaments</h1>
         <UpcomingEvent />
       </div>
-
     </>
   );
 }
