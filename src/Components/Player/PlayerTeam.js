@@ -38,12 +38,9 @@ const PlayerTeam = () => {
                         <input type="text" name="captainId" value={team?.captainId?.name || "N/A"} readOnly className="form-control bg-white text-dark" />
                     </div>
                     {navigate(`/Team/${team._id}`)}
-
                 </form>
-
             </div>
         </div>
     )
 }
-
 export default PlayerTeam;
