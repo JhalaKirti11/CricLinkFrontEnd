@@ -1,5 +1,3 @@
-
-//================================================================
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +31,6 @@ export default function UpdateProfileForm({ closeForm }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // FormData banaiye
     const form = new FormData();
     if (userrole === 'player')
       form.append("skills", formData.skills);
@@ -45,7 +42,6 @@ export default function UpdateProfileForm({ closeForm }) {
     }
 
     try {
-      // Correct URL ke saath request bhejiye
       const res = await fetch(` http://localhost:3001/user/updateProfile/${id}`,
         {
           method: "PUT",
@@ -63,7 +59,6 @@ export default function UpdateProfileForm({ closeForm }) {
           alert("Profile updated successfully!");
           navigate("/OrganizerProfile");
         }
-        //closeForm(false); // Close the form after successful update
       } else {
         alert(data.error || "Failed to update profile.");
       }
@@ -93,13 +88,11 @@ export default function UpdateProfileForm({ closeForm }) {
                   if (userrole === 'player')
                     navigate("/PlayerMyProfile");
                   else
-                    navigate("/OrganizerProfile");                                // Navigate to PlayerMyProfile page
+                    navigate("/OrganizerProfile");
                 }}
               ></button>
             </div>
             <form onSubmit={handleFormSubmit} className="modal-body">
-              {/* //================================================= */}
-
               <div className="mb-3">
                 <label
                   className="form-label"
@@ -123,10 +116,6 @@ export default function UpdateProfileForm({ closeForm }) {
                   <option value="organizer" style={{ color: 'black' }} >Organizer</option>
                 </select>
               </div>
-
-
-
-              {/* ========================================================= */}
               {userRole === 'player' && (
                 <div className="mb-3">
                   <label
@@ -185,7 +174,6 @@ export default function UpdateProfileForm({ closeForm }) {
                   Height
                 </label>
                 <input
-                  // type="number"
                   className="form-control"
                   placeholder="height"
                   name="height"
