@@ -3,13 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 export const CreateTeam = () => {
     const userrole = useSelector((state) => state.User.user.role);
-
     const [createTeam, setCreateTeam] = useState({ teamName: "", username: "" });
     const [successMessage, setSuccessMessage] = useState("");
-    // const [errorMessage, setErrorMessage] = useState("");
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
@@ -17,20 +14,14 @@ export const CreateTeam = () => {
         const { name, value } = event.target;
         setCreateTeam({ ...createTeam, [name]: value });
     };
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post("http://localhost:3001/Team/createTeam", createTeam);
-
             setSuccessMessage(response.data.message);
-            // setErrorMessage("");
             setShowModal(true);
-
-
         } catch (err) {
             if (err.response && err.response.data) {
-                // Show error message in an alert box
                 alert(`Error: ${err.response.data.error}`);
                 setCreateTeam({ teamName: "", username: "" });
             } else {
@@ -54,7 +45,6 @@ export const CreateTeam = () => {
         <div className="container my-5 bg-info p-3">
             <h2>Create Team</h2>
             <p>Connect, collaborate, and create – stronger together.</p>
-            {/* {errorMessage && <p className="alert alert-danger">Unable to create team: {errorMessage}</p>} */}
             <form onSubmit={handleFormSubmit} method="post">
                 <div className="form-group">
                     <label>Team Name:</label>
@@ -67,7 +57,6 @@ export const CreateTeam = () => {
                         required
                     />
                 </div>
-
                 <div className="form-group">
                     <label>Captain's Name:</label>
                     <input
@@ -83,23 +72,21 @@ export const CreateTeam = () => {
                     Create Team
                 </button>
             </form>
-
-            {/* Modal */}
             {showModal && (
                 <div
                     className="modal show"
                     style={{
                         display: "block",
-                        backgroundColor: "rgba(0, 0, 0, 0.5)", // Background overlay color
+                        backgroundColor: "rgba(0, 0, 0, 0.5)",
                     }}
                 >
                     <div className="modal-dialog">
                         <div
                             className="modal-content"
                             style={{
-                                backgroundColor: "#d4edda", // Success background color (light green)
-                                border: "1px solid rgb(113, 162, 204)", // Border color (slightly darker green)
-                                color: "#155724", // Text color (dark green)
+                                backgroundColor: "#d4edda",
+                                border: "1px solid rgb(113, 162, 204)",
+                                color: "#155724",
                             }}
                         >
                             <div className="modal-header">
@@ -121,8 +108,6 @@ export const CreateTeam = () => {
                     </div>
                 </div>
             )}
-
-
         </div>
     );
 };
