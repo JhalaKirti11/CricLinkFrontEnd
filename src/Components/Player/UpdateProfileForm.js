@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 export default function UpdateProfileForm({ closeForm }) {
   const userrole = useSelector((state) => state.User.user.role);
-  // console.log(role);
   console.log("================================", userrole);
   const { id } = useParams();
   const navigate = useNavigate();
