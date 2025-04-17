@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import UpdateProfileForm from './UpdateProfileForm'; // UpdateProfileForm ko import karein
+import UpdateProfileForm from './UpdateProfileForm';
 
 const ParentComponent = () => {
     const [showForm, setShowForm] = useState(false);
-
-    // Close form function
     const closeForm = (value) => {
         setShowForm(value);
     };
@@ -12,10 +10,8 @@ const ParentComponent = () => {
     return (
         <div>
             <button onClick={() => setShowForm(true)}>Update Profile</button>
-
             {showForm && <UpdateProfileForm closeForm={closeForm} />}
         </div>
     );
 };
-
 export default ParentComponent;
