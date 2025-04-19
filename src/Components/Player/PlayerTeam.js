@@ -7,9 +7,7 @@ import TeamDetailsPage from "../Team/TeamDetails";
 const PlayerTeam = () => {
     const id = useSelector((state) => state.User.user._id);
     const navigate = useNavigate();
-
     const [team, setTeam] = useState({});
-
     useEffect(() => {
         getMyTeam()
     }, []);
