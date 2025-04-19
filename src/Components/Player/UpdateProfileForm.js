@@ -79,11 +79,9 @@ export default function UpdateProfileForm({ closeForm }) {
               <h5 className="modal-title" style={{ color: "black" }}>
                 Update Profile
               </h5>
-
               <button
                 className="btn-close"
                 onClick={() => {
-                  //   closeForm(false); // Close the modal
                   if (userrole === 'player')
                     navigate("/PlayerMyProfile");
                   else
