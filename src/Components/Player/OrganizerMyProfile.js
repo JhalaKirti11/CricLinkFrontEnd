@@ -31,30 +31,20 @@ export default function OrganizerMyProfile() {
 
   return (
     <div className="container d-flex flex-column align-items-center mt-5 p-5 text-light" style={{ maxHeight: "100vh"}}>
-      {/* Organizer Details Card */}
       <div className="bg-white rounded shadow-lg text-dark p-4 mb-4" style={{ width: "100%", maxWidth: "700px", height: "550px" }}>
-        
-        {/* Back Button */}
         <i className="btn fa-solid fa-arrow-left fa-1xl mb-4 mt-2"
           onClick={() => navigate(-1)}
           style={{ color: "black", cursor: "pointer" }}>
         </i>
-
-        {/* Page Title */}
         <div className="text-center mb-2">
           <h2 className="text-decoration-underline text-dark">Organizer Details</h2>
         </div>
-
-        {/* Organizer Details Section */}
         <div className="row">
-          {/* Organizer Image and Info */}
           <div className="col-md-4 text-center mb-4 p-4">
             <img src={organizerProfile?.profile_photo || "/user.webp"} width="100%" height="300rem" alt="Organizer"
               style={{ objectFit: "cover", borderRadius: "10px" }} />
             <h4 className="mt-3 text-dark">{organizerProfile?.name}</h4>
           </div>
-
-          {/* Organizer Details Form */}
           <div className="col-md-8 p-4 text-dark">
             <form>
               <div className="mb-3">
@@ -74,8 +64,6 @@ export default function OrganizerMyProfile() {
                 <input type="text" name="location" value={organizerProfile?.profile?.location || "N/A"} readOnly className="form-control bg-white text-dark" />
               </div>
             </form>
-
-            {/* Action Buttons */}
             <button className="btn btn-primary mt-3" onClick={() => navigate(`/UpdateProfileForm/${id}`)}>Update Profile</button>
             <button className="btn btn-success mt-3 ms-2" onClick={() => navigate("/createTournamentReq")}>Create Tournament</button>
           </div>
