@@ -98,7 +98,7 @@ function LeftSidebar() {
                  }}
                  onMouseOver={(e) =>
                    (e.target.style.backgroundColor = "#007bff")
-                 } // Hover effect
+                 }
                  onMouseOut={(e) =>
                    (e.target.style.backgroundColor = "transparent")
                  } >
@@ -155,7 +155,7 @@ function LeftSidebar() {
                  }}
                  onMouseOver={(e) =>
                    (e.target.style.backgroundColor = "#007bff")
-                 } // Hover effect
+                 }
                  onMouseOut={(e) =>
                    (e.target.style.backgroundColor = "transparent")
                  } >
@@ -183,7 +183,7 @@ function LeftSidebar() {
                  }}
                  onMouseOver={(e) =>
                    (e.target.style.backgroundColor = "#007bff")
-                 } // Hover effect
+                 }
                  onMouseOut={(e) =>
                    (e.target.style.backgroundColor = "transparent")
                  } >
