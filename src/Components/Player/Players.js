@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import "./homePage.css";
 import { useNavigate } from "react-router-dom";
 
 export default ({ filteredData }) => {
@@ -53,8 +52,6 @@ export default ({ filteredData }) => {
                 </h5>
                 <p className="card-text text-white">
                   <strong className="text-white">Email:</strong> {player.email || "N/A"}
-                  {/* <br />
-                  <strong>Contact:</strong> {player.contact || "N/A"} */}
                   <br />
                   <strong className="text-white">Role:</strong> {player.role}
                 </p>
@@ -64,7 +61,7 @@ export default ({ filteredData }) => {
                     console.log(
                       "Navigating to PlayerProfile with player:",
                       player
-                    ); // Log the player data
+                    );
                     setSelectedPlayerId(id);
                     navigate("/PlayerProfile", { state: { id } });
                   }}
