@@ -5,7 +5,6 @@
 // import { useSelector } from "react-redux";
 // import Swal from 'sweetalert2';
 
-
 // export const UpdateResult = ()=>{
 //     const params = useParams();
 //     const { state } = useLocation();
@@ -17,9 +16,6 @@
 //     useEffect(()=>{
 //         updateTournament();
 //     },[]);
-
 //     const updateTournament =()=>{
-            
 //     }
-
 // }
