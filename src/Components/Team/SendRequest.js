@@ -7,7 +7,7 @@ function SendRequest() {
   const [team, setTeam] = useState(null);
   const [isCaptain, setIsCaptain] = useState(false);
   const userId = useSelector((state) => state.User.user._id);
-  const { id } = useParams();  // Player ID or Team ID from URL
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function SendRequest() {
         console.log("userid:", userId)
         if (currentUserTeam) {
           setTeam(currentUserTeam);
-          setIsCaptain(currentUserTeam?.captainId._id === userId);  // Check if current user is captain
+          setIsCaptain(currentUserTeam?.captainId._id === userId);
         }
       } catch (err) {
         console.error("Error fetching teams data:", err);
@@ -35,7 +35,6 @@ function SendRequest() {
   const sendJoinRequest = async () => {
     try {
       let requestPayload;
-
       if (isCaptain) {
         requestPayload = {
           playerId: id,
