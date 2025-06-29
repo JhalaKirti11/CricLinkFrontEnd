@@ -18,7 +18,6 @@ function GoogleDetails() {
         googleToken: data.sub, // Google ID
       };
       console.log(loginInfo);
-
       const response = await axios.post("http://localhost:3001/auth/googleSignIn", loginInfo);
       console.log(loginInfo);
       dispatch(setUser(response.data));

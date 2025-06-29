@@ -10,17 +10,15 @@ export default ({ filteredData }) => {
     axios
       .get("http://localhost:3001/user/playerList")
       .then((response) => {
-        console.log("response.data:", response.data.players);
-        setPlayerList(response.data.players);
+        console.log("response.data:", response.data.user);
+        setPlayerList(response.data.user);
       })
       .catch((err) => {
         console.error("Error fetching players:", err);
       });
   }, []);
-
   let navigate = useNavigate();
   filteredData = filteredData?.length ? filteredData : PlayerList;
-
   return (
     <>
       <div className="text-decoration-underline" id="playerContainer">

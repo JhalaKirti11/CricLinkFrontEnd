@@ -29,17 +29,14 @@ export default function PlayerProfile() {
       console.log("--------------------------------------");
       // console.log(state.playerId);
       console.log("state.id : "+state.id);
-      const user = await axios.get(`http://localhost:3001/user/viewProfile/${state.id}`)
+      const user = await axios.get(`http://localhost:3001/user/profile/${state.id}`)
       console.log("USER.DATA : "+user.data)
-      setPlayerData(user.data);
+      setPlayerData(user.data.user);
     }catch(error){
       console.error("Error fetching player details:", error);
       Swal.fire("Error", "Failed to load player details.", "error");
     }
   }
-  
-
-  
   const sendReqToPlayer = async (playerId) => {
     try {
       console.log("current user id : " + id)

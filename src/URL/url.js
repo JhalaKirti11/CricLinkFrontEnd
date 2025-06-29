@@ -18,7 +18,7 @@ let url = {
     //     , searchByCategory: 'http://localhost:3000/player/searchByCategory'
     // },
      
-        player: {
+        player: {   
 
             all: 'http://localhost:3001/user/playerList',
             viewcard: 'http://localhost:3001/user/profile/:userId',
