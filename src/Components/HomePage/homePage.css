@@ -111,3 +111,13 @@
     background: white;
     transform: scale(1.2);
 }
+
+/* Editorial hero treatment */
+.new-carousel { height: min(680px, 72vh) !important; }
+.overlay { background: linear-gradient(90deg, rgba(7, 29, 52, .9) 0%, rgba(7, 29, 52, .53) 46%, rgba(7, 29, 52, .14) 100%); }
+.content { bottom: 13%; left: clamp(24px, 7vw, 108px); }
+.title { font-size: clamp(2.4rem, 5vw, 4.8rem); letter-spacing: -.045em; }
+.topic { font-size: clamp(1.1rem, 2.2vw, 1.65rem); color: #e8b547; }
+.arrow { background: rgba(255, 255, 255, .12); padding: 12px 17px; transition: .2s ease; border-radius: 10px; margin: 0 18px; }
+.arrow:hover { background: #0f8a55; }
+@media (max-width: 576px) { .new-carousel { height: 570px !important; } .content { right: 24px; } .nav-arrows { top: auto; bottom: 20px; } .pagination-dots { bottom: 28px; } }

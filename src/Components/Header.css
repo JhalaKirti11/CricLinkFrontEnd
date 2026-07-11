@@ -1,0 +1,275 @@
+/* ===== BLUE THEME - HEADER & SIDEBAR ===== */
+.navbar-custom {
+  background: linear-gradient(90deg, #1565c0 0%, #1976d2 50%, #42a5f5 100%);
+  box-shadow: 0 2px 12px rgba(21, 101, 192, 0.35);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.navbar-left,
+.navbar-right {
+  flex: 0 0 auto;
+}
+
+.navbar-brand-custom {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: opacity 0.2s;
+}
+
+.navbar-logo-link:hover {
+  opacity: 0.95;
+}
+
+.navbar-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.navbar-brand-text {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.navbar-toggler-custom {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.navbar-toggler-custom:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler-icon-custom {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  position: relative;
+}
+
+.navbar-toggler-icon-custom::before,
+.navbar-toggler-icon-custom::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  left: 0;
+}
+
+.navbar-toggler-icon-custom::before { top: -5px; }
+.navbar-toggler-icon-custom::after { top: 5px; }
+
+.navbar-user-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navbar-user-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.navbar-user-btn i {
+  font-size: 18px;
+}
+
+/* Offcanvas - Blue theme */
+.offcanvas {
+  background: linear-gradient(180deg, #1565c0 0%, #1976d2 100%);
+  color: #ffffff;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 18px;
+}
+
+.sidebar-header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.offcanvas-title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.offcanvas-body {
+  padding: 16px;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin-bottom: 4px;
+}
+
+.nav-link-custom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.nav-link-custom:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.nav-link-custom i {
+  width: 20px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.logout-link {
+  color: #ffcdd2 !important;
+}
+
+.logout-link:hover {
+  background: rgba(211, 47, 47, 0.25) !important;
+}
+
+.user-profile-section {
+  text-align: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 16px;
+}
+
+.user-avatar-wrapper {
+  margin-bottom: 12px;
+}
+
+.user-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  object-fit: cover;
+}
+
+.user-name {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.user-role {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.user-menu {
+  margin-top: 12px;
+}
+
+.btn-login {
+  background: #ffffff;
+  color: #1565c0;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-login:hover {
+  background: #e3f2fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .navbar-brand-text {
+    font-size: 18px;
+  }
+
+  .navbar-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .offcanvas {
+    width: 260px !important;
+  }
+}
+
+/* CricLink navigation refresh */
+.navbar-custom { background: rgba(7, 29, 52, .96); box-shadow: 0 5px 24px rgba(7, 29, 52, .18); padding: 12px 0; backdrop-filter: blur(14px); }
+.navbar-logo, .sidebar-logo { border-radius: 12px; }
+.navbar-brand-text { letter-spacing: -.02em; }
+.navbar-toggler-custom, .navbar-user-btn { background: rgba(255, 255, 255, .09); border-radius: 10px; }
+.offcanvas { background: linear-gradient(160deg, #071d34 0%, #12395c 100%); }
+.nav-link-custom { border-radius: 10px; }
+.nav-link-custom:hover { background: rgba(255, 255, 255, .12); }
+.btn-login { background: #e8b547; color: #071d34; border-radius: 10px; }

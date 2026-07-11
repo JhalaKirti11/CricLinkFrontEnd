@@ -1,21 +1,15 @@
-import React, { createContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import GoogleSign from "./googleSign.js";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import url from "../URL/url.js";
 import "../App.css";
 import "./SignUp.css";
-
-export const ProfileContext = createContext();
+import "./Auth.css";
+import Button from "./Common/Button";
+import Input from "./Common/Input";
 
 export default function SignUpForm() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [profile, setProfile] = useState(null);
-  const [categories, setCategories] = useState([]);
-  const [subCategory, setSubCategory] = useState([]);
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -26,33 +20,45 @@ export default function SignUpForm() {
     role: "",
   });
 
-  useEffect(() => {
-    //         axios.get(url?.category?.all)
-    // axios.get(url.category?.all)
-    //     .then(response => {
-    //         setCategories(response.data.data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
-  }, []);
-
-  const fetchSubCategory = (category_id) => {
-    axios
-      .post(url.subCategory.byCategory, { category_id })
-      .then((response) => {
-        setSubCategory(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const nextStep = () => setCurrentPage(currentPage + 1);
-  const prevStep = () => setCurrentPage(currentPage - 1);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 5) {
+      newErrors.password = "Password must be at least 5 characters";
+    }
+    
+    if (!formData.contact.trim()) {
+      newErrors.contact = "Contact number is required";
+    }
+    
+    if (!formData.role) {
+      newErrors.role = "Please select a role";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleAlert = (iconStatus, title) => {
@@ -63,30 +69,30 @@ export default function SignUpForm() {
       timer: 3000,
     });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     const updatedFormData = {
       name: formData.name,
       email: formData.email,
       password: formData.password,
       contact: formData.contact,
-      role: formData.user,
+      role: formData.role,
     };
 
     try {
-      console.log("Hellooooooo.......");
-      console.log("HRitik>>> data:", updatedFormData);
       const response = await axios.post(url.player.signup, updatedFormData);
-      console.log("API Response:", response.data);
       handleAlert("success", "Successfully signed up");
 
       setTimeout(() => {
-        if (response.data.user.role == "Player") {
+        if (response.data.user.role === "player" || response.data.user.role === "Player") {
           navigate("/PlayerMyProfile");
-        } else if (response.data.user.role == "organizer") {
-          console.log("sign successful");
+        } else if (response.data.user.role === "organizer") {
           navigate("/OrganizerProfile");
         }
       }, 1000);
@@ -100,88 +106,101 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-form-section">
+    <div className="auth-container">
+      <div className="auth-wrapper">
+        <div className="auth-form-section">
+          <div className="auth-form-header">
+            <h2 className="auth-title">Create Account</h2>
+            <p className="auth-subtitle">Join CricLink and start your cricket journey</p>
+          </div>
 
-        <form onSubmit={handleSubmit}>
-          <h2 className="text-center">Sign Up</h2>
-          <div className="input-group">
-            <label>Name</label>
-            <input
-              type="name"
-              placeholder="Enter Your Name"
-              onChange={(e) =>
-                handleChange(e.target.name, e.target.value)
-              }
+          <form onSubmit={handleSubmit} className="auth-form">
+            <Input
+              label="Full Name"
+              type="text"
               name="name"
-              value={(profile && profile.name) || formData.name}
-            />
-          </div>
-          <div className="input-group">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="Enter email address"
+              placeholder="Enter your full name"
+              value={formData.name}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
-              name="email"
-              value={(profile && profile.email) || formData.email}
+              error={errors.name}
+              required
             />
-          </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input
-              onChange={(e) =>
-                handleChange(e.target.name, e.target.value)
-              }
+
+            <Input
+              label="Email Address"
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              value={formData.email}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+              error={errors.email}
+              required
+            />
+
+            <Input
+              label="Password"
               type="password"
               name="password"
+              placeholder="Enter password (min 5 characters)"
               value={formData.password}
-              placeholder="Enter password"
-            />          </div>
-          <div className="input-group">
-            <label>Contact Number</label>
-            <input type="tel" name="contact" onChange={(e) => handleChange(e.target.name, e.target.value)} value={(profile && profile.contact) || formData.contact} required />
-          </div>
-          <div className="input-group">
-            <label>User Role</label>
-            <select
-              
-              name="user"
-              value={formData.user}
-              onChange={(e) =>
-                handleChange(e.target.name, e.target.value)
-              }
-              aria-label="Default select example"
-            >
-              <option style={{ color: "#000000" }} selected>
-                Select Option
-              </option>
-              <option style={{ color: "#000000" }} value="player">
-                Player
-              </option>
-              <option
-                style={{ color: "#000000" }}
-                value="organizer"
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+              error={errors.password}
+              required
+            />
+
+            <Input
+              label="Contact Number"
+              type="tel"
+              name="contact"
+              placeholder="Enter your contact number"
+              value={formData.contact}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+              error={errors.contact}
+              required
+            />
+
+            <div className="input-wrapper">
+              <label className="input-label">
+                User Role <span className="required-asterisk">*</span>
+              </label>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                className={`input-field ${errors.role ? 'input-error' : ''}`}
               >
-                Organizer
-              </option>
-              {/* <option style={{ color: '#000000' }} value="captain">Captain</option> */}
-            </select>
+                <option value="">Select Role</option>
+                <option value="player">Player</option>
+                <option value="organizer">Organizer</option>
+              </select>
+              {errors.role && <span className="error-message">{errors.role}</span>}
+            </div>
+
+            <Button
+              type="submit"
+              variant="primary"
+              size="large"
+              fullWidth
+            >
+              Sign Up
+            </Button>
+
+            <p className="auth-switch-text">
+              Already have an account?{" "}
+              <Link to="/signIn" className="auth-link">
+                Sign In
+              </Link>
+            </p>
+          </form>
+        </div>
+
+        <div className="auth-image-section">
+          <div className="auth-image-overlay">
+            <h3 className="auth-image-title">Join CricLink</h3>
+            <p className="auth-image-subtitle">Connect with players, teams, and tournaments</p>
           </div>
-          <button type="submit" className="signup-button">Sign Up</button>
-          {/* <p className="text-center">OR</p>
-          <GoogleSign /> */}
-          <button
-            type="button"
-            className="back-button"
-            onClick={() => navigate("/signin")}
-          >
-            Back to Sign In
-          </button>
-        </form>
-      </div>
-      <div className="signup-image-section">
-        <img src="assets/highlights/cricket2.jpg"></img>
+          <img src="assets/highlights/cricket2.jpg" alt="Cricket" />
+        </div>
       </div>
     </div>
   );

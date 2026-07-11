@@ -1,96 +1,149 @@
 import { useNavigate, Link } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import Swal from "sweetalert2";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { setUser } from "../redux-config/UserSlice";
 import url from "../URL/url.js";
 import "../App.css";
-import GoogleSign from "./googleSign.js";
-
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import GoogleDetails from "./Google";
+import Button from "./Common/Button";
+import Input from "./Common/Input";
+import "./Auth.css";
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // Yup Validation Schema
+  const loginSchema = Yup.object({
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+    password: Yup.string().min(5, "Min 5 chars required").required("Password is required"),
+  });
+
+  const loginUser = async (values, { setSubmitting }) => {
     try {
-      const formData = { email, password };
-      console.log('Form Data:', formData);
-      const response = await axios.post(url.player.signin, formData);
-      console.log("======================================================");
-      console.log("Sign In Response:", response.data);
-      console.log("======================================================");
-      if(response.data.error){
-        alert("invalid");
+      const response = await axios.post(url.player.signin, values);
+
+      if (response.data.error) {
+        toast.error("Invalid Credentials");
+        setSubmitting(false);
+        return;
       }
-      console.log("Sign In Response:", response.data.user.role);
+
       dispatch(setUser(response.data));
+      sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("currentUser", response.data.user.role);
+      sessionStorage.setItem("token", response.data.token);
 
       toast.success("Sign In Successful");
+
       setTimeout(() => {
-        if (
-          response.data.user.role == "player") {
+        if (response.data.user.role === "player") {
           navigate("/PlayerMyProfile");
-        } else if (response.data.user.role == "organizer") {
-          console.log("sign successful");
+        } else if (response.data.user.role === "organizer") {
           navigate("/OrganizerProfile");
         }
       }, 1000);
+
     } catch (error) {
       console.log("Error during Sign In:", error);
       toast.error("Sign In Failed");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
-    <div className="signup-container">
-      {/* Form Section */}
-      <div className="signup-form-section">
-        <form onSubmit={handleSubmit}>
-          <h2 className="text-center">Sign In</h2>
-          <div className="input-group">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+    <div className="auth-container">
+      <div className="auth-wrapper">
+        {/* Form Section */}
+        <div className="auth-form-section">
+          <div className="auth-form-header">
+            <h2 className="auth-title">Welcome Back</h2>
+            <p className="auth-subtitle">Sign in to continue to CricLink</p>
           </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="signup-button">Sign In</button>
-          <Link to="/forgotpassword">Forgot Password?</Link>
-          <p className="text-center mt-3">
-            Don't have an account?{" "}
-            <Link to="/signUp" className="text-danger">Register</Link>
-          </p>
-          <p className="text-center">OR</p>
-          <GoogleDetails />
-        </form>
-      </div>
 
-      {/* Image Section */}
-      <div className="signup-image-section" style={{width:"30%"}}>
-        <img src="assets/highlights/cricketSignIn3.jpg" alt="Cricket Highlights" />
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={loginSchema}
+            onSubmit={loginUser}
+          >
+            {({ isSubmitting, errors, touched }) => (
+              <Form className="auth-form">
+                <Field
+                  name="email"
+                  render={({ field }) => (
+                    <Input
+                      label="Email Address"
+                      type="email"
+                      placeholder="Enter your email"
+                      error={errors.email && touched.email ? errors.email : null}
+                      required
+                      {...field}
+                    />
+                  )}
+                />
+
+                <Field
+                  name="password"
+                  render={({ field }) => (
+                    <Input
+                      label="Password"
+                      type="password"
+                      placeholder="Enter your password"
+                      error={errors.password && touched.password ? errors.password : null}
+                      required
+                      {...field}
+                    />
+                  )}
+                />
+
+                <div className="auth-form-footer">
+                  <Link to="/forgotPassword" className="forgot-password-link">
+                    Forgot Password?
+                  </Link>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  variant="primary"
+                  size="large"
+                  fullWidth
+                >
+                  {isSubmitting ? "Signing In..." : "Sign In"}
+                </Button>
+
+                <div className="auth-divider">
+                  <span>OR</span>
+                </div>
+
+                <div className="google-auth-wrapper">
+                  <GoogleDetails />
+                </div>
+
+                <p className="auth-switch-text">
+                  Don't have an account?{" "}
+                  <Link to="/signUp" className="auth-link">
+                    Register Now
+                  </Link>
+                </p>
+              </Form>
+            )}
+          </Formik>
+        </div>
+
+        {/* Image Section */}
+        <div className="auth-image-section">
+          <div className="auth-image-overlay">
+            <h3 className="auth-image-title">CricLink</h3>
+            <p className="auth-image-subtitle">Your Premier Cricket Management Platform</p>
+          </div>
+          <img src="assets/highlights/cricketSignIn3.jpg" alt="Cricket Highlights" />
+        </div>
       </div>
     </div>
   );
-};
+}

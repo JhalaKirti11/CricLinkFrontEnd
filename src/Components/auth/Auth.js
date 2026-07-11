@@ -8,4 +8,4 @@ function Auth({children}){
    return <Navigate to="/sign-in"/>
 }
 
-export default Auth; 
+export default Auth;

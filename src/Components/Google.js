@@ -15,14 +15,17 @@ function GoogleDetails() {
       const loginInfo = {
         email: data.email,
         name: data.name,
-        googleToken: data.sub, // Google ID
+        googleToken: data.sub,
       };
-      console.log(loginInfo);
 
       const response = await axios.post("http://localhost:3001/auth/googleSignIn", loginInfo);
-      console.log(loginInfo);
       dispatch(setUser(response.data));
-      console.log("i'm here")
+      
+      // Store session data
+      sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("currentUser", response.data.user.role);
+      sessionStorage.setItem("token", response.data.token);
+      
       toast.success("Google Sign-In Successful");
 
       setTimeout(() => {
@@ -51,4 +54,3 @@ function GoogleDetails() {
 }
 
 export default GoogleDetails;
-
